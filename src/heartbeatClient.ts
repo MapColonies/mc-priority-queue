@@ -1,7 +1,7 @@
 import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 
 export class HeartbeatClient extends HttpClient {
-  public intervalKey: any;
+  public intervalKey: number | null = null;
   public constructor(protected readonly logger: ILogger, protected intervalMs: number, protected heartbeatBaseUrl: string) {
     super(logger, heartbeatBaseUrl, 'heartbeatClient', {
       attempts: 3,
@@ -10,34 +10,29 @@ export class HeartbeatClient extends HttpClient {
     });
   }
 
-  public start(taskId: string) {
+  public start(taskId: string): void {
     this.logger.info(`start heartbit for taskId=${taskId}`);
-    if (this.intervalKey) {
+    if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
     }
     this.intervalKey = setInterval(this.send, this.intervalMs, taskId);
   }
 
-  public stop(taskId: string) {
+  public stop(taskId: string): void {
     this.logger.info(`stop heartbit for taskId=${taskId}`);
-    if (this.intervalKey) {
+    if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
     }
   }
 
-  public async send(taskId: number) {
-    await this.internalSend(taskId);
-  }
-
-  public async internalSend(taskId: number): Promise<any> {
+  public async send(taskId: number): Promise<void> {
     const logFormat = `taskId=${taskId}`;
     try {
       this.logger.debug(`send heartbit for ${logFormat}`);
       const heartbeatUrl = `/heartbeat/${taskId}`;
-      const taskResponse = await this.post(heartbeatUrl);
-      return taskResponse;
+      await this.post(heartbeatUrl);
     } catch (err) {
       this.logger.error(`failed to send heartbit ${logFormat}`);
     }

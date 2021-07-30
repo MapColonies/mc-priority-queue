@@ -9,7 +9,7 @@ export interface ITaskResponse {
   id: string;
   jobId: string;
   description: string;
-  parameters: any;
+  parameters: unknown;
   created: string;
   updated: string;
   status: TaskStatus;

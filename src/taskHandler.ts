@@ -1,7 +1,10 @@
 import { ILogger } from '@map-colonies/mc-utils';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
-import { IUpdateRequestPayload, TaskStatus } from './models/dataTypes';
+import { ITaskResponse, IUpdateRequestPayload, TaskStatus } from './models/dataTypes';
+
+const minValidPrcentage = 0;
+const maxValidPrcentage = 100;
 
 export class TaskHandler {
   public jobManagerClient: JobManagerClient;
@@ -19,28 +22,28 @@ export class TaskHandler {
     this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl);
   }
 
-  public async dequeue(intervalMs: number) {
+  public async dequeue(): Promise<ITaskResponse | null> {
     try {
-      while (true) {
-        const response = await this.jobManagerClient.consume();
-        if (response) {
-          const jobId = response.jobId;
-          const taskId = response.id;
-          const payload: IUpdateRequestPayload = {
-            status: TaskStatus.IN_PROGRESS,
-          };
-          await this.jobManagerClient.update(jobId, taskId, payload);
-          await this.heartbeatClient.start(taskId);
-        }
+      const response = await this.jobManagerClient.consume();
+      if (response) {
+        const jobId = response.jobId;
+        const taskId = response.id;
+        const payload: IUpdateRequestPayload = {
+          status: TaskStatus.IN_PROGRESS,
+        };
+        await this.jobManagerClient.update(jobId, taskId, payload);
+        this.heartbeatClient.start(taskId);
       }
+      return response;
     } catch (err) {
-      this.logger.error(`Error occurred while trying dequeue a record ${err?.message}`);
+      // TODO: print error correctly
+      this.logger.error(`Error occurred while trying dequeue a record err=${JSON.stringify(err)}`);
       throw err;
     }
   }
 
-  public async reject(jobId: string, taskId: string, isRecoverable: boolean, reason: string) {
-    const logFormat = `jobId=${jobId}, taskId=${taskId}, isRecoverable=${isRecoverable}, reason=${reason}`;
+  public async reject(jobId: string, taskId: string, isRecoverable: boolean, reason: string): Promise<void> {
+    const logFormat = `jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${reason}`;
     try {
       this.logger.info(`reject ${logFormat}`);
       this.heartbeatClient.stop(taskId);
@@ -65,12 +68,13 @@ export class TaskHandler {
         await this.jobManagerClient.update(jobId, taskId, payload);
       }
     } catch (err) {
-      this.logger.error(`Error occurred while trying dequeue a record ${err?.message}`);
+      // TODO: print error correctly
+      this.logger.error(`Error occurred while trying dequeue a record ${JSON.stringify(err)}`);
       throw err;
     }
   }
 
-  public async ack(jobId: string, taskId: string) {
+  public async ack(jobId: string, taskId: string): Promise<void> {
     const logFormat = `jobId=${jobId}, taskId=${taskId}`;
     try {
       this.logger.info(`ack ${logFormat}`);
@@ -80,14 +84,15 @@ export class TaskHandler {
       };
       await this.jobManagerClient.update(jobId, taskId, payload);
     } catch (err) {
-      this.logger.error(`Error occurred while trying update ack for ${logFormat}, error=${err?.message}`);
+      // TODO: print error correctly
+      this.logger.error(`Error occurred while trying update ack for ${logFormat}, error=${JSON.stringify(err)}`);
       throw err;
     }
   }
 
-  public async updateProgress(jobId: string, taskId: string, percentage: number) {
+  public async updateProgress(jobId: string, taskId: string, percentage: number): Promise<void> {
     const logFormat = `jobId=${jobId}, taskId=${taskId}`;
-    const percentageValidValue = Math.min(Math.max(0, percentage), 100);
+    const percentageValidValue = Math.min(Math.max(minValidPrcentage, percentage), maxValidPrcentage);
     try {
       this.logger.info(`updateProgress ${logFormat}`);
       const payload: IUpdateRequestPayload = {
@@ -96,7 +101,8 @@ export class TaskHandler {
       };
       await this.jobManagerClient.update(jobId, taskId, payload);
     } catch (err) {
-      this.logger.error(`Error occurred while trying to update Progress for ${logFormat}, error=${err?.message}`);
+      // TODO: print error correctly
+      this.logger.error(`Error occurred while trying to update Progress for ${logFormat}, error=${JSON.stringify(err)}`);
       throw err;
     }
   }

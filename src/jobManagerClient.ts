@@ -41,13 +41,12 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async update(jobId: string, taskId: string, payload: IUpdateRequestPayload) {
+  public async update(jobId: string, taskId: string, payload: IUpdateRequestPayload): Promise<void> {
     const logFormat = `jobId=${jobId}, taskId=${taskId}`;
     try {
       this.logger.info(`update task ${logFormat}`);
       const updateTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
-      const taskResponse = await this.post(updateTaskUrl, payload);
-      return taskResponse;
+      await this.post(updateTaskUrl, payload);
     } catch (err) {
       this.logger.error(`failed to update task ${logFormat}`);
       throw err;
