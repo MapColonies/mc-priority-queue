@@ -22,6 +22,15 @@ export class TaskHandler {
     this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl);
   }
 
+  public async waitForTask(): Promise<ITaskResponse | null> {
+    let task: ITaskResponse | null;
+    do {
+      this.logger.debug('consuming task');
+      task = await this.dequeue();
+    } while (!task);
+    return task;
+  }
+
   public async dequeue(): Promise<ITaskResponse | null> {
     try {
       const response = await this.jobManagerClient.consume();

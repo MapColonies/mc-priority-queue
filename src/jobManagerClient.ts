@@ -29,10 +29,12 @@ export class JobManagerClient extends HttpClient {
     try {
       this.logger.info(`consume ${logFormat}`);
       const consumeTaskUrl = `/tasks/${this.jobType}/${this.taskType}/startPending`;
-      const taskResponse = await this.get<ITaskResponse>(consumeTaskUrl);
+      const taskResponse = await this.post<ITaskResponse>(consumeTaskUrl);
+      console.log(taskResponse);
       return taskResponse;
     } catch (err) {
-      if (err === NotFoundError) {
+      if (err instanceof NotFoundError) {
+        this.logger.debug('failed to consume task due empty queue');
         return null;
       } else {
         this.logger.error(`failed to consume ${logFormat}`);

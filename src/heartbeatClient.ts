@@ -1,7 +1,7 @@
 import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 
 export class HeartbeatClient extends HttpClient {
-  public intervalKey: number | null = null;
+  public intervalKey: NodeJS.Timeout | null = null;
   public constructor(protected readonly logger: ILogger, protected intervalMs: number, protected heartbeatBaseUrl: string) {
     super(logger, heartbeatBaseUrl, 'heartbeatClient', {
       attempts: 3,
@@ -11,12 +11,19 @@ export class HeartbeatClient extends HttpClient {
   }
 
   public start(taskId: string): void {
+    console.log('sdfasdf');
     this.logger.info(`start heartbit for taskId=${taskId}`);
     if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
     }
-    this.intervalKey = setInterval(this.send, this.intervalMs, taskId);
+    this.intervalKey = setInterval(
+      () => {
+        void this.send;
+      },
+      this.intervalMs,
+      taskId
+    );
   }
 
   public stop(taskId: string): void {
