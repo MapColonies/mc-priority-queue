@@ -1,4 +1,6 @@
-import { cat } from '../../src';
+const cat = {
+  say: 'meow',
+};
 
 describe('plus', function () {
   it('should equal 2 for 1 plus 1', function () {
