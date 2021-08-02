@@ -11,7 +11,6 @@ export class HeartbeatClient extends HttpClient {
   }
 
   public start(taskId: string): void {
-    console.log('sdfasdf');
     this.logger.info(`start heartbit for taskId=${taskId}`);
     if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);

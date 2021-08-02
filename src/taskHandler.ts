@@ -16,6 +16,7 @@ export class TaskHandler {
     protected taskType: string,
     protected jobManagerBaseUrl: string,
     protected heartbeatUrl: string,
+    protected dequeueIntervalMs: number,
     protected heartbeatIntervalMs: number
   ) {
     this.jobManagerClient = new JobManagerClient(logger, jobType, taskType, jobManagerBaseUrl);
@@ -27,6 +28,7 @@ export class TaskHandler {
     do {
       this.logger.debug('consuming task');
       task = await this.dequeue();
+      await new Promise((resolve) => setTimeout(resolve, this.dequeueIntervalMs));
     } while (!task);
     return task;
   }
@@ -45,8 +47,7 @@ export class TaskHandler {
       }
       return response;
     } catch (err) {
-      // TODO: print error correctly
-      this.logger.error(`Error occurred while trying dequeue a record err=${JSON.stringify(err)}`);
+      this.logger.error(`Error occurred while trying dequeue a record error=${JSON.stringify(err)}`);
       throw err;
     }
   }
@@ -77,7 +78,6 @@ export class TaskHandler {
         await this.jobManagerClient.update(jobId, taskId, payload);
       }
     } catch (err) {
-      // TODO: print error correctly
       this.logger.error(`Error occurred while trying dequeue a record ${JSON.stringify(err)}`);
       throw err;
     }
@@ -93,7 +93,6 @@ export class TaskHandler {
       };
       await this.jobManagerClient.update(jobId, taskId, payload);
     } catch (err) {
-      // TODO: print error correctly
       this.logger.error(`Error occurred while trying update ack for ${logFormat}, error=${JSON.stringify(err)}`);
       throw err;
     }
@@ -110,7 +109,6 @@ export class TaskHandler {
       };
       await this.jobManagerClient.update(jobId, taskId, payload);
     } catch (err) {
-      // TODO: print error correctly
       this.logger.error(`Error occurred while trying to update Progress for ${logFormat}, error=${JSON.stringify(err)}`);
       throw err;
     }

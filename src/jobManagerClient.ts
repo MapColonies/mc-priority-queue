@@ -30,7 +30,6 @@ export class JobManagerClient extends HttpClient {
       this.logger.info(`consume ${logFormat}`);
       const consumeTaskUrl = `/tasks/${this.jobType}/${this.taskType}/startPending`;
       const taskResponse = await this.post<ITaskResponse>(consumeTaskUrl);
-      console.log(taskResponse);
       return taskResponse;
     } catch (err) {
       if (err instanceof NotFoundError) {
