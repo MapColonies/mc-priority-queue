@@ -52,8 +52,8 @@ export class TaskHandler {
     }
   }
 
-  public async reject(jobId: string, taskId: string, isRecoverable: boolean, reason: string): Promise<void> {
-    const logFormat = `jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${reason}`;
+  public async reject(jobId: string, taskId: string, isRecoverable: boolean, reason?: string): Promise<void> {
+    const logFormat = `jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${reason as string}`;
     try {
       this.logger.info(`reject ${logFormat}`);
       this.heartbeatClient.stop(taskId);
@@ -64,7 +64,7 @@ export class TaskHandler {
           payload = {
             status: TaskStatus.PENDING,
             attempts: task.attempts + 1,
-            reason: task.reason,
+            reason: reason,
           };
         }
       } else {

@@ -47,7 +47,7 @@ export class JobManagerClient extends HttpClient {
     try {
       this.logger.info(`update task ${logFormat}`);
       const updateTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
-      await this.post(updateTaskUrl, payload);
+      await this.put(updateTaskUrl, payload);
     } catch (err) {
       this.logger.error(`failed to update task ${logFormat}`);
       throw err;

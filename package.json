@@ -1,6 +1,6 @@
 {
-  "name": "@map-colonies/ts-npm-package-boilerplate",
-  "version": "1.0.1",
+  "name": "@map-colonies/mc-priority-queue",
+  "version": "1.0.0",
   "description": "This is template for map colonies typescript packages",
   "main": "./dist/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "build": "tsc --project tsconfig.build.json",
     "start": "npm run build && cd dist && node ./index.js",
     "clean": "rimraf dist",
-    "prepublish": "npm run build"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
