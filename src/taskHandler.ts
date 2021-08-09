@@ -1,7 +1,7 @@
 import { ILogger } from '@map-colonies/mc-utils';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
-import { ITaskResponse, IUpdateRequestPayload, TaskStatus } from './models/dataTypes';
+import { ITaskResponse, IUpdateTaskRequestPayload, TaskStatus } from './models/dataTypes';
 
 const minValidPrcentage = 0;
 const maxValidPrcentage = 100;
@@ -39,7 +39,7 @@ export class TaskHandler {
       if (response) {
         const jobId = response.jobId;
         const taskId = response.id;
-        const payload: IUpdateRequestPayload = {
+        const payload: IUpdateTaskRequestPayload = {
           status: TaskStatus.IN_PROGRESS,
         };
         await this.jobManagerClient.updateTask(jobId, taskId, payload);
@@ -57,7 +57,7 @@ export class TaskHandler {
     try {
       this.logger.info(`reject ${logFormat}`);
       this.heartbeatClient.stop(taskId);
-      let payload: IUpdateRequestPayload | undefined;
+      let payload: IUpdateTaskRequestPayload | undefined;
       if (isRecoverable) {
         const task = await this.jobManagerClient.getTask(jobId, taskId);
         if (task) {
@@ -88,7 +88,7 @@ export class TaskHandler {
     try {
       this.logger.info(`ack ${logFormat}`);
       this.heartbeatClient.stop(taskId);
-      const payload: IUpdateRequestPayload = {
+      const payload: IUpdateTaskRequestPayload = {
         status: TaskStatus.COMPLETED,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
@@ -103,7 +103,7 @@ export class TaskHandler {
     const percentageValidValue = Math.min(Math.max(minValidPrcentage, percentage), maxValidPrcentage);
     try {
       this.logger.info(`updateProgress ${logFormat}`);
-      const payload: IUpdateRequestPayload = {
+      const payload: IUpdateTaskRequestPayload = {
         status: TaskStatus.IN_PROGRESS,
         percentage: percentageValidValue,
       };
