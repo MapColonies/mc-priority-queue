@@ -42,7 +42,7 @@ export class TaskHandler {
         const payload: IUpdateRequestPayload = {
           status: TaskStatus.IN_PROGRESS,
         };
-        await this.jobManagerClient.update(jobId, taskId, payload);
+        await this.jobManagerClient.updateTask(jobId, taskId, payload);
         this.heartbeatClient.start(taskId);
       }
       return response;
@@ -75,7 +75,7 @@ export class TaskHandler {
 
       if (payload !== undefined) {
         this.logger.info(`reject send update ${logFormat} with ${JSON.stringify(payload)}`);
-        await this.jobManagerClient.update(jobId, taskId, payload);
+        await this.jobManagerClient.updateTask(jobId, taskId, payload);
       }
     } catch (err) {
       this.logger.error(`Error occurred while trying dequeue a record ${JSON.stringify(err)}`);
@@ -91,7 +91,7 @@ export class TaskHandler {
       const payload: IUpdateRequestPayload = {
         status: TaskStatus.COMPLETED,
       };
-      await this.jobManagerClient.update(jobId, taskId, payload);
+      await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
       this.logger.error(`Error occurred while trying update ack for ${logFormat}, error=${JSON.stringify(err)}`);
       throw err;
@@ -107,7 +107,7 @@ export class TaskHandler {
         status: TaskStatus.IN_PROGRESS,
         percentage: percentageValidValue,
       };
-      await this.jobManagerClient.update(jobId, taskId, payload);
+      await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
       this.logger.error(`Error occurred while trying to update Progress for ${logFormat}, error=${JSON.stringify(err)}`);
       throw err;
