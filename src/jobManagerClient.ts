@@ -1,6 +1,6 @@
 import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
-import { ITaskResponse, IUpdateRequestPayload } from './models/dataTypes';
+import { IJobResponse, ITaskResponse, IUpdateJobRequestPayload, IUpdateTaskRequestPayload } from './models/dataTypes';
 
 export class JobManagerClient extends HttpClient {
   public constructor(protected readonly logger: ILogger, protected jobType: string, protected taskType: string, protected jobManagerBaseUrl: string) {
@@ -24,6 +24,17 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
+  public async getJob(jobId: string): Promise<IJobResponse | undefined> {
+    try {
+      this.logger.info(`get job ${jobId}`);
+      const job = await this.get<IJobResponse>(`/jobs/${jobId}`);
+      return job;
+    } catch {
+      this.logger.error(`failed to get job data for job: ${jobId}`);
+      return undefined;
+    }
+  }
+
   public async consume(): Promise<ITaskResponse | null> {
     const logFormat = `jobType=${this.jobType}, taskType=${this.taskType}`;
     try {
@@ -42,14 +53,25 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async update(jobId: string, taskId: string, payload: IUpdateRequestPayload): Promise<void> {
+  public async updateTask(jobId: string, taskId: string, payload: IUpdateTaskRequestPayload): Promise<void> {
     const logFormat = `jobId=${jobId}, taskId=${taskId}`;
     try {
-      this.logger.info(`update task ${logFormat}`);
+      this.logger.info(`update task ${logFormat} payload=${JSON.stringify(payload)}`);
       const updateTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
       await this.put(updateTaskUrl, payload);
     } catch (err) {
       this.logger.error(`failed to update task ${logFormat}`);
+      throw err;
+    }
+  }
+
+  public async updateJob(jobId: string, payload: IUpdateJobRequestPayload): Promise<void> {
+    try {
+      this.logger.info(`update job Id=${jobId} payload=${JSON.stringify(payload)}`);
+      const updateJobUrl = `/jobs/${jobId}`;
+      await this.put(updateJobUrl, payload);
+    } catch (err) {
+      this.logger.error(`failed to update job Id=${jobId}`);
       throw err;
     }
   }
