@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IUpdateTaskRequestPayload | @map-colonies/mc-priority-queue</title>
+	<title>IUpdateJobRequestPayload | @map-colonies/mc-priority-queue</title>
 	<meta name="description" content="Documentation for @map-colonies/mc-priority-queue">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@map-colonies/mc-priority-queue</a>
 				</li>
 				<li>
-					<a href="iupdaterequestpayload.html">IUpdateTaskRequestPayload</a>
+					<a href="iupdatejobrequestpayload.html">IUpdateJobRequestPayload</a>
 				</li>
 			</ul>
-			<h1>Interface IUpdateTaskRequestPayload</h1>
+			<h1>Interface IUpdateJobRequestPayload</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IUpdateTaskRequestPayload</span>
+						<span class="target">IUpdateJobRequestPayload</span>
 					</li>
 				</ul>
 			</section>
@@ -80,12 +80,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdaterequestpayload.html#attempts" class="tsd-kind-icon">attempts</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdaterequestpayload.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdaterequestpayload.html#parameters" class="tsd-kind-icon">parameters</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdaterequestpayload.html#percentage" class="tsd-kind-icon">percentage</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdaterequestpayload.html#reason" class="tsd-kind-icon">reason</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdaterequestpayload.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdatejobrequestpayload.html#iscleaned" class="tsd-kind-icon">is<wbr>Cleaned</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdatejobrequestpayload.html#parameters" class="tsd-kind-icon">parameters</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdatejobrequestpayload.html#percentage" class="tsd-kind-icon">percentage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdatejobrequestpayload.html#priority" class="tsd-kind-icon">priority</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdatejobrequestpayload.html#reason" class="tsd-kind-icon">reason</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iupdatejobrequestpayload.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -94,22 +94,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="attempts" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> attempts</h3>
-					<div class="tsd-signature tsd-kind-icon">attempts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="iscleaned" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Cleaned</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Cleaned<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/2b56acf/src/models/dataTypes.ts#L23">src/models/dataTypes.ts:23</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/2b56acf/src/models/dataTypes.ts#L25">src/models/dataTypes.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/485b0cb/src/models/dataTypes.ts#L53">src/models/dataTypes.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -119,7 +109,7 @@
 					<div class="tsd-signature tsd-kind-icon">parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unknown</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/2b56acf/src/models/dataTypes.ts#L26">src/models/dataTypes.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/485b0cb/src/models/dataTypes.ts#L49">src/models/dataTypes.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -129,7 +119,17 @@
 					<div class="tsd-signature tsd-kind-icon">percentage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/2b56acf/src/models/dataTypes.ts#L27">src/models/dataTypes.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/485b0cb/src/models/dataTypes.ts#L51">src/models/dataTypes.ts:51</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="priority" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> priority</h3>
+					<div class="tsd-signature tsd-kind-icon">priority<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/485b0cb/src/models/dataTypes.ts#L54">src/models/dataTypes.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">reason<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/2b56acf/src/models/dataTypes.ts#L24">src/models/dataTypes.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/485b0cb/src/models/dataTypes.ts#L52">src/models/dataTypes.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../enums/taskstatus.html" class="tsd-signature-type" data-tsd-kind="Enumeration">TaskStatus</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/2b56acf/src/models/dataTypes.ts#L22">src/models/dataTypes.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/485b0cb/src/models/dataTypes.ts#L50">src/models/dataTypes.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -178,35 +178,41 @@
 						<a href="../classes/taskhandler.html" class="tsd-kind-icon">Task<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="ijobresponse.html" class="tsd-kind-icon">IJob<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="itaskresponse.html" class="tsd-kind-icon">ITask<wbr>Response</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="iupdaterequestpayload.html" class="tsd-kind-icon">IUpdate<wbr>Request<wbr>Payload</a>
+						<a href="iupdatejobrequestpayload.html" class="tsd-kind-icon">IUpdate<wbr>Job<wbr>Request<wbr>Payload</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iupdaterequestpayload.html#attempts" class="tsd-kind-icon">attempts</a>
+								<a href="iupdatejobrequestpayload.html#iscleaned" class="tsd-kind-icon">is<wbr>Cleaned</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iupdaterequestpayload.html#description" class="tsd-kind-icon">description</a>
+								<a href="iupdatejobrequestpayload.html#parameters" class="tsd-kind-icon">parameters</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iupdaterequestpayload.html#parameters" class="tsd-kind-icon">parameters</a>
+								<a href="iupdatejobrequestpayload.html#percentage" class="tsd-kind-icon">percentage</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iupdaterequestpayload.html#percentage" class="tsd-kind-icon">percentage</a>
+								<a href="iupdatejobrequestpayload.html#priority" class="tsd-kind-icon">priority</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iupdaterequestpayload.html#reason" class="tsd-kind-icon">reason</a>
+								<a href="iupdatejobrequestpayload.html#reason" class="tsd-kind-icon">reason</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="iupdaterequestpayload.html#status" class="tsd-kind-icon">status</a>
+								<a href="iupdatejobrequestpayload.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="iupdatetaskrequestpayload.html" class="tsd-kind-icon">IUpdate<wbr>Task<wbr>Request<wbr>Payload</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
