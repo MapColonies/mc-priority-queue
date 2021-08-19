@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/MapColonies/mc-priority-queue/compare/v2.0.2...v2.0.3) (2021-08-19)
+
+
+### Bug Fixes
+
+* fix package.json git references ([#5](https://github.com/MapColonies/mc-priority-queue/issues/5)) ([56378c4](https://github.com/MapColonies/mc-priority-queue/commit/56378c4dce38548c19e8fcc0c6d4aac7a1407894))
+
 ### [2.0.2](https://github.com/MapColonies/ts-npm-package-boilerplate/compare/v2.0.0...v2.0.2) (2021-08-19)
 
 
