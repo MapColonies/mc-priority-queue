@@ -1,7 +1,7 @@
 {
   "name": "@map-colonies/mc-priority-queue",
   "version": "2.0.2",
-  "description": "This is template for map colonies typescript packages",
+  "description": "This package handles tasks consuming from jobs manager",
   "main": "./dist/index.js",
   "scripts": {
     "test:unit": "jest --config=./tests/configurations/unit/jest.config.js",
@@ -22,12 +22,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MapColonies/ts-npm-package-boilerplate.git"
+    "url": "git+https://https://github.com/MapColonies/mc-priority-queue.git"
   },
   "author": "MapColonies",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MapColonies/ts-npm-package-boilerplate/issues"
+    "url": "https://github.com/MapColonies/mc-priority-queue/issues"
   },
   "husky": {
     "hooks": {
@@ -38,7 +38,7 @@
   "files": [
     "dist/**/*"
   ],
-  "homepage": "https://github.com/MapColonies/ts-npm-package-boilerplate#readme",
+  "homepage": "https://github.com/MapColonies/mc-priority-queue#readme",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
