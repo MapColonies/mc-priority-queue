@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/MapColonies/ts-npm-package-boilerplate/compare/v2.0.0...v2.0.1) (2021-08-19)
+
+
+### Bug Fixes
+
+* reduce consume log level to debug ([#4](https://github.com/MapColonies/ts-npm-package-boilerplate/issues/4)) ([ba35a34](https://github.com/MapColonies/ts-npm-package-boilerplate/commit/ba35a349d44046945bd684e34f15603897251ebf))
+
 ## [2.0.0](https://github.com/MapColonies/ts-npm-package-boilerplate/compare/v1.0.1...v2.0.0) (2021-08-10)
 
 
