@@ -36,15 +36,15 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async consume(): Promise<ITaskResponse | null> {
-    const logFormat = `jobType=${this.jobType}, taskType=${this.taskType}`;
+    const logFormat = `JobManagerClient: jobType=${this.jobType}, taskType=${this.taskType}`;
     try {
-      this.logger.info(`consume ${logFormat}`);
+      this.logger.debug(`${logFormat} consume `);
       const consumeTaskUrl = `/tasks/${this.jobType}/${this.taskType}/startPending`;
       const taskResponse = await this.post<ITaskResponse>(consumeTaskUrl);
       return taskResponse;
     } catch (err) {
       if (err instanceof NotFoundError) {
-        this.logger.debug('failed to consume task due empty queue');
+        this.logger.debug(`${logFormat} failed to consume due empty queue`);
         return null;
       } else {
         this.logger.error(`failed to consume ${logFormat}`);
