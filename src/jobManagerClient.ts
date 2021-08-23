@@ -1,6 +1,6 @@
 import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
-import { IJobResponse, ITaskResponse, IUpdateJobRequestPayload, IUpdateTaskRequestPayload } from './models/dataTypes';
+import { ICreateJobBody, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
 
 export class JobManagerClient extends HttpClient {
   public constructor(protected readonly logger: ILogger, protected jobType: string, protected taskType: string, protected jobManagerBaseUrl: string) {
@@ -14,12 +14,25 @@ export class JobManagerClient extends HttpClient {
   public async getTask(jobId: string, taskId: string): Promise<ITaskResponse | null> {
     const logFormat = `jobId=${jobId}, taskId=${taskId}`;
     try {
-      this.logger.info(`get task ${logFormat}`);
+      this.logger.info(`${logFormat} get task`);
       const getTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
       const task = await this.get<ITaskResponse>(getTaskUrl);
       return task;
     } catch (err) {
-      this.logger.error(`failed to get task ${logFormat}`);
+      this.logger.error(`${logFormat} failed to get task`);
+      throw err;
+    }
+  }
+
+  public async getTasksForJob(jobId: string): Promise<ITaskResponse[] | null> {
+    const logFormat = `jobId=${jobId}`;
+    try {
+      this.logger.info(`${logFormat} get tasks`);
+      const getTaskUrl = `/jobs/${jobId}/tasks`;
+      const tasks = await this.get<ITaskResponse[]>(getTaskUrl);
+      return tasks;
+    } catch (err) {
+      this.logger.error(`${logFormat} failed to get tasks`);
       throw err;
     }
   }
@@ -53,7 +66,19 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async updateTask(jobId: string, taskId: string, payload: IUpdateTaskRequestPayload): Promise<void> {
+  public async createTask(jobId: string, payload: IUpdateTaskBody): Promise<void> {
+    const logFormat = `jobId=${jobId}`;
+    try {
+      this.logger.info(`${logFormat} create task payload=${JSON.stringify(payload)}`);
+      const createTaskUrl = `/jobs/${jobId}/tasks`;
+      await this.post(createTaskUrl, payload);
+    } catch (err) {
+      this.logger.error(`${logFormat} failed to update task`);
+      throw err;
+    }
+  }
+
+  public async updateTask(jobId: string, taskId: string, payload: IUpdateTaskBody): Promise<void> {
     const logFormat = `jobId=${jobId}, taskId=${taskId}`;
     try {
       this.logger.info(`update task ${logFormat} payload=${JSON.stringify(payload)}`);
@@ -65,7 +90,18 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async updateJob(jobId: string, payload: IUpdateJobRequestPayload): Promise<void> {
+  public async createJob(payload: ICreateJobBody): Promise<void> {
+    try {
+      this.logger.info(`create job payload=${JSON.stringify(payload)}`);
+      const createJobUrl = `/jobs`;
+      await this.post(createJobUrl, payload);
+    } catch (err) {
+      this.logger.error(`failed to create job`);
+      throw err;
+    }
+  }
+
+  public async updateJob(jobId: string, payload: IUpdateJobBody): Promise<void> {
     try {
       this.logger.info(`update job Id=${jobId} payload=${JSON.stringify(payload)}`);
       const updateJobUrl = `/jobs/${jobId}`;

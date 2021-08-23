@@ -1,7 +1,7 @@
 import { ILogger } from '@map-colonies/mc-utils';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
-import { ITaskResponse, IUpdateTaskRequestPayload, TaskStatus } from './models/dataTypes';
+import { ITaskResponse, IUpdateTaskBody, OperationStatus } from './models/dataTypes';
 
 const minValidPrcentage = 0;
 const maxValidPrcentage = 100;
@@ -39,8 +39,8 @@ export class TaskHandler {
       if (response) {
         const jobId = response.jobId;
         const taskId = response.id;
-        const payload: IUpdateTaskRequestPayload = {
-          status: TaskStatus.IN_PROGRESS,
+        const payload: IUpdateTaskBody = {
+          status: OperationStatus.IN_PROGRESS,
         };
         await this.jobManagerClient.updateTask(jobId, taskId, payload);
         this.heartbeatClient.start(taskId);
@@ -57,19 +57,19 @@ export class TaskHandler {
     try {
       this.logger.info(`${logFormat} reject`);
       this.heartbeatClient.stop(taskId);
-      let payload: IUpdateTaskRequestPayload | undefined;
+      let payload: IUpdateTaskBody | undefined;
       if (isRecoverable) {
         const task = await this.jobManagerClient.getTask(jobId, taskId);
         if (task) {
           payload = {
-            status: TaskStatus.PENDING,
+            status: OperationStatus.PENDING,
             attempts: task.attempts + 1,
             reason: reason,
           };
         }
       } else {
         payload = {
-          status: TaskStatus.FAILED,
+          status: OperationStatus.FAILED,
         };
       }
 
@@ -88,8 +88,8 @@ export class TaskHandler {
     try {
       this.logger.info(`${logFormat} ack`);
       this.heartbeatClient.stop(taskId);
-      const payload: IUpdateTaskRequestPayload = {
-        status: TaskStatus.COMPLETED,
+      const payload: IUpdateTaskBody = {
+        status: OperationStatus.COMPLETED,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
@@ -103,8 +103,8 @@ export class TaskHandler {
     const percentageValidValue = Math.min(Math.max(minValidPrcentage, percentage), maxValidPrcentage);
     try {
       this.logger.info(`${logFormat} updateProgress`);
-      const payload: IUpdateTaskRequestPayload = {
-        status: TaskStatus.IN_PROGRESS,
+      const payload: IUpdateTaskBody = {
+        status: OperationStatus.IN_PROGRESS,
         percentage: percentageValidValue,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
