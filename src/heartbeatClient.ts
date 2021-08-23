@@ -11,7 +11,7 @@ export class HeartbeatClient extends HttpClient {
   }
 
   public start(taskId: string): void {
-    this.logger.info(`start heartbit for taskId=${taskId}`);
+    this.logger.info(`[HeartbeatClient][start] taskId=${taskId}`);
     if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
@@ -26,7 +26,7 @@ export class HeartbeatClient extends HttpClient {
   }
 
   public stop(taskId: string): void {
-    this.logger.info(`stop heartbit for taskId=${taskId}`);
+    this.logger.info(`[HeartbeatClient][stop] taskId=${taskId}`);
     if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
@@ -34,13 +34,12 @@ export class HeartbeatClient extends HttpClient {
   }
 
   public async send(taskId: number): Promise<void> {
-    const logFormat = `taskId=${taskId}`;
     try {
-      this.logger.debug(`send heartbit for ${logFormat}`);
+      this.logger.debug(`[HeartbeatClient][send] taskId=${taskId}`);
       const heartbeatUrl = `/heartbeat/${taskId}`;
       await this.post(heartbeatUrl);
     } catch (err) {
-      this.logger.error(`failed to send heartbit ${logFormat}`);
+      this.logger.error(`[HeartbeatClient][send] taskId=${taskId} failed`);
     }
   }
 }
