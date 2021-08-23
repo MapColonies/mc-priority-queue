@@ -39,7 +39,7 @@ export class HeartbeatClient extends HttpClient {
       const heartbeatUrl = `/heartbeat/${taskId}`;
       await this.post(heartbeatUrl);
     } catch (err) {
-      this.logger.error(`[HeartbeatClient][send] taskId=${taskId} failed`);
+      this.logger.error(`[HeartbeatClient][send] taskId=${taskId} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
     }
   }
 }

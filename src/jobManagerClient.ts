@@ -18,7 +18,12 @@ export class JobManagerClient extends HttpClient {
       const task = await this.get<ITaskResponse>(getTaskUrl);
       return task;
     } catch (err) {
-      this.logger.error(`[JobManagerClient][getTask] jobId=${jobId}, taskId=${taskId} failed to get task`);
+      this.logger.error(
+        `[JobManagerClient][getTask] jobId=${jobId}, taskId=${taskId} failed to get task error=${JSON.stringify(
+          err,
+          Object.getOwnPropertyNames(err)
+        )}`
+      );
       throw err;
     }
   }
@@ -30,7 +35,7 @@ export class JobManagerClient extends HttpClient {
       const tasks = await this.get<ITaskResponse[]>(getTaskUrl);
       return tasks;
     } catch (err) {
-      this.logger.error(`[JobManagerClient][getTasksForJob] jobId=${jobId} failed`);
+      this.logger.error(`[JobManagerClient][getTasksForJob] jobId=${jobId} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
       throw err;
     }
   }
@@ -40,8 +45,8 @@ export class JobManagerClient extends HttpClient {
       this.logger.info(`[JobManagerClient][getJob] jobId=${jobId}`);
       const job = await this.get<IJobResponse>(`/jobs/${jobId}`);
       return job;
-    } catch {
-      this.logger.error(`[JobManagerClient][getJob] jobId=${jobId} failed`);
+    } catch (err) {
+      this.logger.error(`[JobManagerClient][getJob] jobId=${jobId} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
       return undefined;
     }
   }
@@ -57,7 +62,12 @@ export class JobManagerClient extends HttpClient {
         this.logger.debug(`[JobManagerClient][consume] jobType=${this.jobType}, taskType=${this.taskType}, failed to consume due empty queue`);
         return null;
       } else {
-        this.logger.error(`[JobManagerClient][consume] jobType=${this.jobType}, taskType=${this.taskType}, failed to consume`);
+        this.logger.error(
+          `[JobManagerClient][consume] jobType=${this.jobType}, taskType=${this.taskType}, failed to consume error=${JSON.stringify(
+            err,
+            Object.getOwnPropertyNames(err)
+          )}`
+        );
         throw err;
       }
     }
@@ -69,7 +79,12 @@ export class JobManagerClient extends HttpClient {
       const createTaskUrl = `/jobs/${jobId}/tasks`;
       await this.post(createTaskUrl, payload);
     } catch (err) {
-      this.logger.error(`[JobManagerClient][enqueueTask] jobId=${jobId}, payload=${JSON.stringify(payload)} failed`);
+      this.logger.error(
+        `[JobManagerClient][enqueueTask] jobId=${jobId}, payload=${JSON.stringify(payload)} failed error=${JSON.stringify(
+          err,
+          Object.getOwnPropertyNames(err)
+        )}`
+      );
       throw err;
     }
   }
@@ -80,7 +95,12 @@ export class JobManagerClient extends HttpClient {
       const updateTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
       await this.put(updateTaskUrl, payload);
     } catch (err) {
-      this.logger.error(`[JobManagerClient][updateTask] jobId=${jobId}, taskId=${taskId}, payload=${JSON.stringify(payload)} failed`);
+      this.logger.error(
+        `[JobManagerClient][updateTask] jobId=${jobId}, taskId=${taskId}, payload=${JSON.stringify(payload)} failed error=${JSON.stringify(
+          err,
+          Object.getOwnPropertyNames(err)
+        )}`
+      );
       throw err;
     }
   }
@@ -91,7 +111,9 @@ export class JobManagerClient extends HttpClient {
       const createJobUrl = `/jobs`;
       await this.post(createJobUrl, payload);
     } catch (err) {
-      this.logger.error(`[JobManagerClient][createJob] payload=${JSON.stringify(payload)} failed`);
+      this.logger.error(
+        `[JobManagerClient][createJob] payload=${JSON.stringify(payload)} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`
+      );
       throw err;
     }
   }
@@ -102,7 +124,12 @@ export class JobManagerClient extends HttpClient {
       const updateJobUrl = `/jobs/${jobId}`;
       await this.put(updateJobUrl, payload);
     } catch (err) {
-      this.logger.error(`[JobManagerClient][updateJob] jobId=${jobId}, payload=${JSON.stringify(payload)} failed`);
+      this.logger.error(
+        `[JobManagerClient][updateJob] jobId=${jobId}, payload=${JSON.stringify(payload)} failed error=${JSON.stringify(
+          err,
+          Object.getOwnPropertyNames(err)
+        )}`
+      );
       throw err;
     }
   }
