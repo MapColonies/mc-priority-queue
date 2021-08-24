@@ -1,6 +1,6 @@
 import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
-import { ICreateJobBody, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
+import { ICreateJobBody, ICreateTaskBody, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
 
 export class JobManagerClient extends HttpClient {
   public constructor(protected readonly logger: ILogger, protected jobType: string, protected taskType: string, protected jobManagerBaseUrl: string) {
@@ -73,7 +73,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async enqueueTask(jobId: string, payload: IUpdateTaskBody): Promise<void> {
+  public async enqueueTask(jobId: string, payload: ICreateTaskBody): Promise<void> {
     try {
       this.logger.info(`[JobManagerClient][enqueueTask] jobId=${jobId}, payload=${JSON.stringify(payload)}`);
       const createTaskUrl = `/jobs/${jobId}/tasks`;
