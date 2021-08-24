@@ -102,10 +102,13 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobmanagerclient.html#consume" class="tsd-kind-icon">consume</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobmanagerclient.html#createjob" class="tsd-kind-icon">create<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external"><a href="jobmanagerclient.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobmanagerclient.html#enqueuetask" class="tsd-kind-icon">enqueue<wbr>Task</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external"><a href="jobmanagerclient.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobmanagerclient.html#getjob" class="tsd-kind-icon">get<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobmanagerclient.html#gettask" class="tsd-kind-icon">get<wbr>Task</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobmanagerclient.html#gettasksforjob" class="tsd-kind-icon">get<wbr>Tasks<wbr>For<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external"><a href="jobmanagerclient.html#head" class="tsd-kind-icon">head</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external"><a href="jobmanagerclient.html#options" class="tsd-kind-icon">options</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external"><a href="jobmanagerclient.html#patch" class="tsd-kind-icon">patch</a></li>
@@ -131,7 +134,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides HttpClient.constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/5799012/src/jobManagerClient.ts#L5">src/jobManagerClient.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L5">src/jobManagerClient.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -209,10 +212,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/5799012/src/jobManagerClient.ts#L38">src/jobManagerClient.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L54">src/jobManagerClient.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itaskresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">ITaskResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createjob" class="tsd-anchor"></a>
+					<h3>create<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Job<span class="tsd-signature-symbol">(</span>payload<span class="tsd-signature-symbol">: </span><a href="../interfaces/icreatejobbody.html" class="tsd-signature-type" data-tsd-kind="Interface">ICreateJobBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L108">src/jobManagerClient.ts:108</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>payload: <a href="../interfaces/icreatejobbody.html" class="tsd-signature-type" data-tsd-kind="Interface">ICreateJobBody</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -249,6 +275,32 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="enqueuetask" class="tsd-anchor"></a>
+					<h3>enqueue<wbr>Task</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">enqueue<wbr>Task<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><a href="../interfaces/icreatetaskbody.html" class="tsd-signature-type" data-tsd-kind="Interface">ICreateTaskBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L76">src/jobManagerClient.ts:76</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>payload: <a href="../interfaces/icreatetaskbody.html" class="tsd-signature-type" data-tsd-kind="Interface">ICreateTaskBody</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -298,7 +350,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/5799012/src/jobManagerClient.ts#L27">src/jobManagerClient.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L43">src/jobManagerClient.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -321,7 +373,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/5799012/src/jobManagerClient.ts#L14">src/jobManagerClient.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L14">src/jobManagerClient.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -334,6 +386,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itaskresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">ITaskResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettasksforjob" class="tsd-anchor"></a>
+					<h3>get<wbr>Tasks<wbr>For<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Tasks<wbr>For<wbr>Job<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itaskresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">ITaskResponse</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L31">src/jobManagerClient.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/itaskresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">ITaskResponse</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -530,13 +605,13 @@
 					<a name="updatejob" class="tsd-anchor"></a>
 					<h3>update<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">update<wbr>Job<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><a href="../interfaces/iupdatejobrequestpayload.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateJobRequestPayload</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Job<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><a href="../interfaces/iupdatejobbody.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateJobBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/5799012/src/jobManagerClient.ts#L68">src/jobManagerClient.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L121">src/jobManagerClient.ts:121</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -545,7 +620,7 @@
 									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>payload: <a href="../interfaces/iupdatejobrequestpayload.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateJobRequestPayload</a></h5>
+									<h5>payload: <a href="../interfaces/iupdatejobbody.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateJobBody</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -556,13 +631,13 @@
 					<a name="updatetask" class="tsd-anchor"></a>
 					<h3>update<wbr>Task</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">update<wbr>Task<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><a href="../interfaces/iupdatetaskrequestpayload.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateTaskRequestPayload</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Task<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, taskId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><a href="../interfaces/iupdatetaskbody.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateTaskBody</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/5799012/src/jobManagerClient.ts#L56">src/jobManagerClient.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/723f3ff/src/jobManagerClient.ts#L92">src/jobManagerClient.ts:92</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -574,7 +649,7 @@
 									<h5>taskId: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>payload: <a href="../interfaces/iupdatetaskrequestpayload.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateTaskRequestPayload</a></h5>
+									<h5>payload: <a href="../interfaces/iupdatetaskbody.html" class="tsd-signature-type" data-tsd-kind="Interface">IUpdateTaskBody</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -594,7 +669,7 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/taskstatus.html" class="tsd-kind-icon">Task<wbr>Status</a>
+						<a href="../enums/operationstatus.html" class="tsd-kind-icon">Operation<wbr>Status</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="heartbeatclient.html" class="tsd-kind-icon">Heartbeat<wbr>Client</a>
@@ -625,8 +700,14 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="jobmanagerclient.html#consume" class="tsd-kind-icon">consume</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="jobmanagerclient.html#createjob" class="tsd-kind-icon">create<wbr>Job</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external">
 								<a href="jobmanagerclient.html#delete" class="tsd-kind-icon">delete</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="jobmanagerclient.html#enqueuetask" class="tsd-kind-icon">enqueue<wbr>Task</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external">
 								<a href="jobmanagerclient.html#get" class="tsd-kind-icon">get</a>
@@ -636,6 +717,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="jobmanagerclient.html#gettask" class="tsd-kind-icon">get<wbr>Task</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="jobmanagerclient.html#gettasksforjob" class="tsd-kind-icon">get<wbr>Tasks<wbr>For<wbr>Job</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-protected tsd-is-external">
 								<a href="jobmanagerclient.html#head" class="tsd-kind-icon">head</a>
@@ -666,16 +750,22 @@
 						<a href="taskhandler.html" class="tsd-kind-icon">Task<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="../interfaces/icreatejobbody.html" class="tsd-kind-icon">ICreate<wbr>Job<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/icreatetaskbody.html" class="tsd-kind-icon">ICreate<wbr>Task<wbr>Body</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="../interfaces/ijobresponse.html" class="tsd-kind-icon">IJob<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/itaskresponse.html" class="tsd-kind-icon">ITask<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/iupdatejobrequestpayload.html" class="tsd-kind-icon">IUpdate<wbr>Job<wbr>Request<wbr>Payload</a>
+						<a href="../interfaces/iupdatejobbody.html" class="tsd-kind-icon">IUpdate<wbr>Job<wbr>Body</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="../interfaces/iupdatetaskrequestpayload.html" class="tsd-kind-icon">IUpdate<wbr>Task<wbr>Request<wbr>Payload</a>
+						<a href="../interfaces/iupdatetaskbody.html" class="tsd-kind-icon">IUpdate<wbr>Task<wbr>Body</a>
 					</li>
 				</ul>
 			</nav>

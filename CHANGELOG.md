@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.1.0 (2021-08-24)
+
+
+### Features
+
+* add job and task creation ([#6](https://github.com/MapColonies/mc-priority-queue/issues/6)) ([13ac567](https://github.com/MapColonies/mc-priority-queue/commit/13ac567f3777209bd80ef57d1fbd7b88f0ac79c3))
+
 ### [2.0.3](https://github.com/MapColonies/mc-priority-queue/compare/v2.0.2...v2.0.3) (2021-08-19)
 
 

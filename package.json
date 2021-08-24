@@ -1,6 +1,6 @@
 {
   "name": "@map-colonies/mc-priority-queue",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "This package handles tasks consuming from jobs manager",
   "main": "./dist/index.js",
   "scripts": {
