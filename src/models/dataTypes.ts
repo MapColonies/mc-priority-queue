@@ -1,4 +1,4 @@
-export enum TaskStatus {
+export enum OperationStatus {
   PENDING = 'Pending',
   IN_PROGRESS = 'In-Progress',
   COMPLETED = 'Completed',
@@ -12,19 +12,10 @@ export interface ITaskResponse {
   parameters: unknown;
   created: string;
   updated: string;
-  status: TaskStatus;
+  status: OperationStatus;
   percentage: number;
   reason: string;
   attempts: number;
-}
-
-export interface IUpdateTaskRequestPayload {
-  status: TaskStatus;
-  attempts?: number;
-  reason?: string;
-  description?: string;
-  parameters?: unknown;
-  percentage?: number;
 }
 
 export interface IJobResponse {
@@ -35,19 +26,49 @@ export interface IJobResponse {
   parameters: unknown;
   created: string;
   updated: string;
-  status: TaskStatus;
+  status: OperationStatus;
   percentage: number;
   reason: string;
   attempts: number;
   type: string;
   priority: number;
-  tasks: IUpdateTaskRequestPayload[];
+  tasks: IUpdateTaskBody[];
   isCleaned: boolean;
 }
 
-export interface IUpdateJobRequestPayload {
-  parameters?: unknown;
-  status: TaskStatus;
+export interface ICreateJobBody {
+  resourceId: string;
+  version: string;
+  parameters: Record<string, unknown>;
+  type: string;
+  description?: string;
+  status?: OperationStatus;
+  reason?: string;
+  tasks?: ICreateTaskBody[];
+  priority?: number;
+}
+
+export interface ICreateTaskBody {
+  description?: string;
+  parameters: Record<string, unknown>;
+  reason?: string;
+  type?: string;
+  status?: OperationStatus;
+  attempts?: number;
+}
+
+export interface IUpdateTaskBody {
+  description?: string;
+  parameters?: Record<string, unknown>;
+  status: OperationStatus;
+  percentage?: number;
+  reason?: string;
+  attempts?: number;
+}
+
+export interface IUpdateJobBody {
+  parameters?: Record<string, unknown>;
+  status?: OperationStatus;
   percentage?: number;
   reason?: string;
   isCleaned?: boolean;

@@ -1,7 +1,7 @@
 import { ILogger } from '@map-colonies/mc-utils';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
-import { ITaskResponse, IUpdateTaskRequestPayload, TaskStatus } from './models/dataTypes';
+import { ITaskResponse, IUpdateTaskBody, OperationStatus } from './models/dataTypes';
 
 const minValidPrcentage = 0;
 const maxValidPrcentage = 100;
@@ -26,7 +26,7 @@ export class TaskHandler {
   public async waitForTask(): Promise<ITaskResponse | null> {
     let task: ITaskResponse | null;
     do {
-      this.logger.debug('TaskHandler: consuming task');
+      this.logger.debug(`[TaskHandler][waitForTask]`);
       task = await this.dequeue();
       await new Promise((resolve) => setTimeout(resolve, this.dequeueIntervalMs));
     } while (!task);
@@ -39,77 +39,87 @@ export class TaskHandler {
       if (response) {
         const jobId = response.jobId;
         const taskId = response.id;
-        const payload: IUpdateTaskRequestPayload = {
-          status: TaskStatus.IN_PROGRESS,
+        const payload: IUpdateTaskBody = {
+          status: OperationStatus.IN_PROGRESS,
         };
         await this.jobManagerClient.updateTask(jobId, taskId, payload);
         this.heartbeatClient.start(taskId);
       }
       return response;
     } catch (err) {
-      this.logger.error(`Error occurred while trying dequeue a record error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+      this.logger.error(`[TaskHandler][dequeue] error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
       throw err;
     }
   }
 
   public async reject(jobId: string, taskId: string, isRecoverable: boolean, reason?: string): Promise<void> {
-    const logFormat = `TaskHandler: jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${reason as string}`;
     try {
-      this.logger.info(`${logFormat} reject`);
+      this.logger.info(`[TaskHandler][reject] jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${reason as string}`);
       this.heartbeatClient.stop(taskId);
-      let payload: IUpdateTaskRequestPayload | undefined;
+      let payload: IUpdateTaskBody | undefined;
       if (isRecoverable) {
         const task = await this.jobManagerClient.getTask(jobId, taskId);
         if (task) {
           payload = {
-            status: TaskStatus.PENDING,
+            status: OperationStatus.PENDING,
             attempts: task.attempts + 1,
             reason: reason,
           };
         }
       } else {
         payload = {
-          status: TaskStatus.FAILED,
+          status: OperationStatus.FAILED,
         };
       }
 
       if (payload !== undefined) {
-        this.logger.info(`${logFormat} reject send update with payload ${JSON.stringify(payload)}`);
+        this.logger.info(
+          `[TaskHandler][reject] send update with payload ${JSON.stringify(payload)} jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(
+            isRecoverable
+          )}, reason=${reason as string}`
+        );
         await this.jobManagerClient.updateTask(jobId, taskId, payload);
       }
     } catch (err) {
-      this.logger.error(`${logFormat} Error occurred while trying dequeue a record ${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+      this.logger.error(
+        `[TaskHandler][reject] failed jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${
+          reason as string
+        } error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`
+      );
       throw err;
     }
   }
 
   public async ack(jobId: string, taskId: string): Promise<void> {
-    const logFormat = `TaskHandler: jobId=${jobId}, taskId=${taskId}`;
     try {
-      this.logger.info(`${logFormat} ack`);
+      this.logger.info(`[TaskHandler][ack] jobId=${jobId}, taskId=${taskId}`);
       this.heartbeatClient.stop(taskId);
-      const payload: IUpdateTaskRequestPayload = {
-        status: TaskStatus.COMPLETED,
+      const payload: IUpdateTaskBody = {
+        status: OperationStatus.COMPLETED,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
-      this.logger.error(`${logFormat} Error occurred while executing ack logic, error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+      this.logger.error(`[TaskHandler][ack] failed jobId=${jobId}, taskId=${taskId} error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
       throw err;
     }
   }
 
   public async updateProgress(jobId: string, taskId: string, percentage: number): Promise<void> {
-    const logFormat = `TaskHandler: jobId=${jobId}, taskId=${taskId}`;
     const percentageValidValue = Math.min(Math.max(minValidPrcentage, percentage), maxValidPrcentage);
     try {
-      this.logger.info(`${logFormat} updateProgress`);
-      const payload: IUpdateTaskRequestPayload = {
-        status: TaskStatus.IN_PROGRESS,
+      this.logger.info(`[TaskHandler][updateProgress] jobId=${jobId}, taskId=${taskId}, percentageValidValue=${percentageValidValue}`);
+      const payload: IUpdateTaskBody = {
+        status: OperationStatus.IN_PROGRESS,
         percentage: percentageValidValue,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
-      this.logger.error(`${logFormat} Error occurred while trying to update Progress, error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+      this.logger.error(
+        `[TaskHandler][updateProgress] failed jobId=${jobId}, taskId=${taskId}, percentageValidValue=${percentageValidValue} error=${JSON.stringify(
+          err,
+          Object.getOwnPropertyNames(err)
+        )}`
+      );
       throw err;
     }
   }
