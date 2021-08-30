@@ -74,3 +74,5 @@ export interface IUpdateJobBody {
   isCleaned?: boolean;
   priority?: number;
 }
+
+export interface IFindTaskRequest extends Partial<ITaskResponse> {}
