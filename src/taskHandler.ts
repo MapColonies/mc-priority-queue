@@ -37,12 +37,7 @@ export class TaskHandler {
     try {
       const response = await this.jobManagerClient.consume();
       if (response) {
-        const jobId = response.jobId;
         const taskId = response.id;
-        const payload: IUpdateTaskBody = {
-          status: OperationStatus.IN_PROGRESS,
-        };
-        await this.jobManagerClient.updateTask(jobId, taskId, payload);
         this.heartbeatClient.start(taskId);
       }
       return response;
