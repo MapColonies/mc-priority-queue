@@ -1,6 +1,6 @@
 import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
-import { ICreateJobBody, ICreateTaskBody, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
+import { ICreateJobBody, ICreateTaskBody, IFindTaskRequest, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
 
 export class JobManagerClient extends HttpClient {
   public constructor(protected readonly logger: ILogger, protected jobType: string, protected taskType: string, protected jobManagerBaseUrl: string) {
@@ -102,6 +102,23 @@ export class JobManagerClient extends HttpClient {
         )}`
       );
       throw err;
+    }
+  }
+
+  public async findTasks(criteria: IFindTaskRequest): Promise<ITaskResponse[] | undefined> {
+    this.logger.debug(`[JobManagerClient][findTasks] finding task with data: ${JSON.stringify(criteria)}`);
+    const findTaskUrl = '/tasks/find';
+    try {
+      const res = await this.post<ITaskResponse[]>(findTaskUrl, criteria);
+      return res;
+    } catch (err) {
+      if (err instanceof NotFoundError) {
+        this.logger.debug(`[JobManagerClient][findTasks] no tasks match specified criteria`);
+        return undefined;
+      } else {
+        this.logger.error(`[JobManagerClient][findTasks] filed to search tasks: ${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+        throw err;
+      }
     }
   }
 
