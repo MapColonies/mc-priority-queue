@@ -1,9 +1,8 @@
 import { ILogger } from '@map-colonies/mc-utils';
+import { NotFoundError } from '@map-colonies/error-types';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
-import HttpStatus from 'http-status-codes';
 import { ITaskResponse, IUpdateTaskBody, OperationStatus } from './models/dataTypes';
-import { NotFoundError } from '@map-colonies/error-types';
 
 const minValidPrcentage = 0;
 const maxValidPrcentage = 100;
@@ -45,7 +44,6 @@ export class TaskHandler {
       return response;
     } catch (err) {
       if (err instanceof NotFoundError) {
-        this.logger.debug(`[TaskHandler][dequeue] error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
         return null;
       } else {
         this.logger.error(`[TaskHandler][dequeue] error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
