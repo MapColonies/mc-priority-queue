@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 3.2.0 (2021-11-11)
+
+
+### Features
+
+* fix dequeue log ([#9](https://github.com/MapColonies/mc-priority-queue/issues/9)) ([a336be1](https://github.com/MapColonies/mc-priority-queue/commit/a336be1a3570c628ffce0b44a2ea204e2cd9f980))
+
 ## [3.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v3.0.0...v3.1.0) (2021-08-30)
 
 ## [3.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v2.0.3...v3.0.0) (2021-08-24)
