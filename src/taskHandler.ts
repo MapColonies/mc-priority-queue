@@ -52,11 +52,11 @@ export class TaskHandler {
     }
   }
 
-  public async reject(jobId: string, taskId: string, isRecoverable: boolean, reason?: string): Promise<void> {
+  public async reject<T>(jobId: string, taskId: string, isRecoverable: boolean, reason?: string): Promise<void> {
     try {
       this.logger.info(`[TaskHandler][reject] jobId=${jobId}, taskId=${taskId}, isRecoverable=${String(isRecoverable)}, reason=${reason as string}`);
       this.heartbeatClient.stop(taskId);
-      let payload: IUpdateTaskBody | undefined;
+      let payload: IUpdateTaskBody<T> | undefined;
       if (isRecoverable) {
         const task = await this.jobManagerClient.getTask(jobId, taskId);
         if (task) {
@@ -90,11 +90,11 @@ export class TaskHandler {
     }
   }
 
-  public async ack(jobId: string, taskId: string): Promise<void> {
+  public async ack<T>(jobId: string, taskId: string): Promise<void> {
     try {
       this.logger.info(`[TaskHandler][ack] jobId=${jobId}, taskId=${taskId}`);
       this.heartbeatClient.stop(taskId);
-      const payload: IUpdateTaskBody = {
+      const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.COMPLETED,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
@@ -104,11 +104,11 @@ export class TaskHandler {
     }
   }
 
-  public async updateProgress(jobId: string, taskId: string, percentage: number): Promise<void> {
+  public async updateProgress<T>(jobId: string, taskId: string, percentage: number): Promise<void> {
     const percentageValidValue = Math.min(Math.max(minValidPrcentage, percentage), maxValidPrcentage);
     try {
       this.logger.info(`[TaskHandler][updateProgress] jobId=${jobId}, taskId=${taskId}, percentageValidValue=${percentageValidValue}`);
-      const payload: IUpdateTaskBody = {
+      const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.IN_PROGRESS,
         percentage: percentageValidValue,
       };
