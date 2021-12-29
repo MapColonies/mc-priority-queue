@@ -3,76 +3,102 @@ export enum OperationStatus {
   IN_PROGRESS = 'In-Progress',
   COMPLETED = 'Completed',
   FAILED = 'Failed',
+  EXPIRED = 'Expired',
 }
 
-export interface ITaskResponse {
+export interface ITaskResponse<T> {
   id: string;
-  jobId: string;
+  jobId?: string;
   description: string;
-  parameters: unknown;
+  parameters: T;
   created: string;
   updated: string;
   status: OperationStatus;
-  percentage: number;
+  percentage?: number;
   reason: string;
   attempts: number;
+  type: string;
+  resettable: boolean;
 }
 
-export interface IJobResponse {
+export interface IJobResponse<T, P> {
   id: string;
   resourceId: string;
   version: string;
   description: string;
-  parameters: unknown;
+  parameters: T;
   created: string;
   updated: string;
   status: OperationStatus;
-  percentage: number;
   reason: string;
-  attempts: number;
   type: string;
   priority: number;
-  tasks: IUpdateTaskBody[];
+  tasks: ITaskResponse<P>[];
   isCleaned: boolean;
+  expirationDate?: Date;
+  percentage?: number;
+  internalId?: string;
+  producerName?: string;
+  productName?: string;
+  productType?: string;
+  taskCount: number;
+  completedTasks: number;
+  failedTasks: number;
+  expiredTasks: number;
+  pendingTasks: number;
+  inProgressTasks: number;
+  resolution?: string;
 }
 
-export interface ICreateJobBody {
+export interface ICreateJobBody<T, P> {
   resourceId: string;
   version: string;
-  parameters: Record<string, unknown>;
+  parameters: T;
   type: string;
+  percentage?: number;
   description?: string;
   status?: OperationStatus;
   reason?: string;
-  tasks?: ICreateTaskBody[];
+  tasks?: ICreateTaskBody<P>[];
   priority?: number;
+  expirationDate?: Date;
+  internalId?: string;
+  producerName?: string;
+  productName?: string;
+  productType?: string;
 }
 
-export interface ICreateTaskBody {
+export interface ICreateTaskBody<T> {
   description?: string;
-  parameters: Record<string, unknown>;
+  parameters: T;
   reason?: string;
   type?: string;
   status?: OperationStatus;
   attempts?: number;
+  percentage?: number;
 }
 
-export interface IUpdateTaskBody {
+export interface IUpdateTaskBody<T> {
   description?: string;
-  parameters?: Record<string, unknown>;
+  parameters?: T;
   status: OperationStatus;
   percentage?: number;
   reason?: string;
   attempts?: number;
 }
 
-export interface IUpdateJobBody {
-  parameters?: Record<string, unknown>;
+export interface IUpdateJobBody<T> {
+  parameters?: T;
   status?: OperationStatus;
   percentage?: number;
   reason?: string;
   isCleaned?: boolean;
   priority?: number;
+  expirationDate?: Date;
+  internalId?: string;
+  producerName?: string;
+  productName?: string;
+  productType?: string;
 }
 
-export interface IFindTaskRequest extends Partial<ITaskResponse> {}
+export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}
