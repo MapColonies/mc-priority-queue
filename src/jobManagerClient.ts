@@ -59,7 +59,6 @@ export class JobManagerClient extends HttpClient {
       return taskResponse;
     } catch (err) {
       if (err instanceof NotFoundError) {
-        this.logger.debug(`[JobManagerClient][consume] jobType=${this.jobType}, taskType=${this.taskType}, failed to consume due empty queue`);
         return null;
       } else {
         this.logger.error(
