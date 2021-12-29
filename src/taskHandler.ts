@@ -24,8 +24,8 @@ export class TaskHandler {
     this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl);
   }
 
-  public async waitForTask(): Promise<ITaskResponse | null> {
-    let task: ITaskResponse | null;
+  public async waitForTask<T>(): Promise<ITaskResponse<T> | null> {
+    let task: ITaskResponse<T> | null;
     do {
       this.logger.debug(`[TaskHandler][waitForTask]`);
       task = await this.dequeue();
@@ -34,9 +34,9 @@ export class TaskHandler {
     return task;
   }
 
-  public async dequeue(): Promise<ITaskResponse | null> {
+  public async dequeue<T>(): Promise<ITaskResponse<T> | null> {
     try {
-      const response = await this.jobManagerClient.consume();
+      const response = await this.jobManagerClient.consume<T>();
       if (response) {
         const taskId = response.id;
         this.heartbeatClient.start(taskId);

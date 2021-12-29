@@ -11,11 +11,11 @@ export class JobManagerClient extends HttpClient {
     });
   }
 
-  public async getTask(jobId: string, taskId: string): Promise<ITaskResponse | null> {
+  public async getTask<T>(jobId: string, taskId: string): Promise<ITaskResponse<T> | null> {
     try {
       this.logger.info(`[JobManagerClient][getTask] jobId=${jobId}, taskId=${taskId}`);
       const getTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
-      const task = await this.get<ITaskResponse>(getTaskUrl);
+      const task = await this.get<ITaskResponse<T>>(getTaskUrl);
       return task;
     } catch (err) {
       this.logger.error(
@@ -28,11 +28,11 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async getTasksForJob(jobId: string): Promise<ITaskResponse[] | null> {
+  public async getTasksForJob<T>(jobId: string): Promise<ITaskResponse<T>[] | null> {
     try {
       this.logger.info(`[JobManagerClient][getTasksForJob] jobId=${jobId}`);
       const getTaskUrl = `/jobs/${jobId}/tasks`;
-      const tasks = await this.get<ITaskResponse[]>(getTaskUrl);
+      const tasks = await this.get<ITaskResponse<T>[]>(getTaskUrl);
       return tasks;
     } catch (err) {
       this.logger.error(`[JobManagerClient][getTasksForJob] jobId=${jobId} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
@@ -51,11 +51,11 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async consume(): Promise<ITaskResponse | null> {
+  public async consume<T>(): Promise<ITaskResponse<T> | null> {
     try {
       this.logger.debug(`[JobManagerClient][consume] jobType=${this.jobType}, taskType=${this.taskType}`);
       const consumeTaskUrl = `/tasks/${this.jobType}/${this.taskType}/startPending`;
-      const taskResponse = await this.post<ITaskResponse>(consumeTaskUrl);
+      const taskResponse = await this.post<ITaskResponse<T>>(consumeTaskUrl);
       return taskResponse;
     } catch (err) {
       if (err instanceof NotFoundError) {
@@ -105,11 +105,11 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async findTasks(criteria: IFindTaskRequest): Promise<ITaskResponse[] | undefined> {
+  public async findTasks<T>(criteria: IFindTaskRequest<T>): Promise<ITaskResponse<T>[] | undefined> {
     this.logger.debug(`[JobManagerClient][findTasks] finding task with data: ${JSON.stringify(criteria)}`);
     const findTaskUrl = '/tasks/find';
     try {
-      const res = await this.post<ITaskResponse[]>(findTaskUrl, criteria);
+      const res = await this.post<ITaskResponse<T>[]>(findTaskUrl, criteria);
       return res;
     } catch (err) {
       if (err instanceof NotFoundError) {
@@ -122,7 +122,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async createJob<T>(payload: ICreateJobBody<T>): Promise<void> {
+  public async createJob<T, P>(payload: ICreateJobBody<T, P>): Promise<void> {
     try {
       this.logger.info(`[JobManagerClient][createJob] payload=${JSON.stringify(payload)}`);
       const createJobUrl = `/jobs`;
