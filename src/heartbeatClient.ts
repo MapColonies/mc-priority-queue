@@ -3,11 +3,17 @@ import { ILogger, HttpClient } from '@map-colonies/mc-utils';
 export class HeartbeatClient extends HttpClient {
   public intervalKey: NodeJS.Timeout | null = null;
   public constructor(protected readonly logger: ILogger, protected intervalMs: number, protected heartbeatBaseUrl: string) {
-    super(logger, heartbeatBaseUrl, 'heartbeatClient', {
-      attempts: 3,
-      delay: 'exponential',
-      shouldResetTimeout: true,
-    });
+    super(
+      logger,
+      heartbeatBaseUrl,
+      'heartbeatClient',
+      {
+        attempts: 3,
+        delay: 'exponential',
+        shouldResetTimeout: true,
+      },
+      true
+    );
   }
 
   public start(taskId: string): void {
@@ -35,7 +41,6 @@ export class HeartbeatClient extends HttpClient {
 
   public async send(taskId: number): Promise<void> {
     try {
-      this.logger.debug(`[HeartbeatClient][send] taskId=${taskId}`);
       const heartbeatUrl = `/heartbeat/${taskId}`;
       await this.post(heartbeatUrl);
     } catch (err) {
