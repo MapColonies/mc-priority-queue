@@ -1,14 +1,18 @@
-import { ILogger, HttpClient } from '@map-colonies/mc-utils';
+import { ILogger, HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
 import { ICreateJobBody, ICreateTaskBody, IFindTaskRequest, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
+import { ICreateJobResponse } from './models/interfaces';
+import { httpClientConfig } from './models/utils';
 
 export class JobManagerClient extends HttpClient {
-  public constructor(protected readonly logger: ILogger, protected jobType: string, protected taskType: string, protected jobManagerBaseUrl: string) {
-    super(logger, jobManagerBaseUrl, 'jobManagerClient', {
-      attempts: 3,
-      delay: 'exponential',
-      shouldResetTimeout: true,
-    });
+  public constructor(
+    protected readonly logger: ILogger,
+    protected jobType: string,
+    protected taskType: string,
+    protected jobManagerBaseUrl: string,
+    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig
+  ) {
+    super(logger, jobManagerBaseUrl, 'jobManagerClient', httpRetryConfig, true);
   }
 
   public async getTask<T>(jobId: string, taskId: string): Promise<ITaskResponse<T> | null> {
@@ -121,11 +125,12 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async createJob<T, P>(payload: ICreateJobBody<T, P>): Promise<void> {
+  public async createJob<T, P>(payload: ICreateJobBody<T, P>): Promise<ICreateJobResponse> {
     try {
       this.logger.info(`[JobManagerClient][createJob] payload=${JSON.stringify(payload)}`);
       const createJobUrl = `/jobs`;
-      await this.post(createJobUrl, payload);
+      const res = await this.post<ICreateJobResponse>(createJobUrl, payload);
+      return res;
     } catch (err) {
       this.logger.error(
         `[JobManagerClient][createJob] payload=${JSON.stringify(payload)} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`

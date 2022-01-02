@@ -1,13 +1,15 @@
-import { ILogger, HttpClient } from '@map-colonies/mc-utils';
+import { ILogger, HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
+import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
   public intervalKey: NodeJS.Timeout | null = null;
-  public constructor(protected readonly logger: ILogger, protected intervalMs: number, protected heartbeatBaseUrl: string) {
-    super(logger, heartbeatBaseUrl, 'heartbeatClient', {
-      attempts: 3,
-      delay: 'exponential',
-      shouldResetTimeout: true,
-    });
+  public constructor(
+    protected readonly logger: ILogger,
+    protected intervalMs: number,
+    protected heartbeatBaseUrl: string,
+    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig
+  ) {
+    super(logger, heartbeatBaseUrl, 'heartbeatClient', httpRetryConfig);
   }
 
   public start(taskId: string): void {
