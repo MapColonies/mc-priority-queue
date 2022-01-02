@@ -58,13 +58,24 @@
 					<a href="icreatejobbody.html">ICreateJobBody</a>
 				</li>
 			</ul>
-			<h1>Interface ICreateJobBody</h1>
+			<h1>Interface ICreateJobBody&lt;T, P&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+					<li>
+						<h4>P</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -81,8 +92,14 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#expirationdate" class="tsd-kind-icon">expiration<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#internalid" class="tsd-kind-icon">internal<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#parameters" class="tsd-kind-icon">parameters</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#percentage" class="tsd-kind-icon">percentage</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#priority" class="tsd-kind-icon">priority</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#producername" class="tsd-kind-icon">producer<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#productname" class="tsd-kind-icon">product<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#producttype" class="tsd-kind-icon">product<wbr>Type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#reason" class="tsd-kind-icon">reason</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#resourceid" class="tsd-kind-icon">resource<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icreatejobbody.html#status" class="tsd-kind-icon">status</a></li>
@@ -102,17 +119,47 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L44">src/models/dataTypes.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L59">src/models/dataTypes.ts:59</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="expirationdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expiration<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">expiration<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L64">src/models/dataTypes.ts:64</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="internalid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> internal<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">internal<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L65">src/models/dataTypes.ts:65</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="parameters" class="tsd-anchor"></a>
 					<h3>parameters</h3>
-					<div class="tsd-signature tsd-kind-icon">parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L42">src/models/dataTypes.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L56">src/models/dataTypes.ts:56</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="percentage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> percentage</h3>
+					<div class="tsd-signature tsd-kind-icon">percentage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L58">src/models/dataTypes.ts:58</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -122,7 +169,37 @@
 					<div class="tsd-signature tsd-kind-icon">priority<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L48">src/models/dataTypes.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L63">src/models/dataTypes.ts:63</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="producername" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> producer<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">producer<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L66">src/models/dataTypes.ts:66</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="productname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> product<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">product<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L67">src/models/dataTypes.ts:67</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="producttype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> product<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">product<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L68">src/models/dataTypes.ts:68</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -132,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">reason<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L46">src/models/dataTypes.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L61">src/models/dataTypes.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">resource<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L40">src/models/dataTypes.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L54">src/models/dataTypes.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -152,17 +229,17 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../enums/operationstatus.html" class="tsd-signature-type" data-tsd-kind="Enumeration">OperationStatus</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L45">src/models/dataTypes.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L60">src/models/dataTypes.ts:60</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="tasks" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> tasks</h3>
-					<div class="tsd-signature tsd-kind-icon">tasks<span class="tsd-signature-symbol">:</span> <a href="icreatetaskbody.html" class="tsd-signature-type" data-tsd-kind="Interface">ICreateTaskBody</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">tasks<span class="tsd-signature-symbol">:</span> <a href="icreatetaskbody.html" class="tsd-signature-type" data-tsd-kind="Interface">ICreateTaskBody</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L47">src/models/dataTypes.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L62">src/models/dataTypes.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +249,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L43">src/models/dataTypes.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L57">src/models/dataTypes.ts:57</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/ec5797f/src/models/dataTypes.ts#L41">src/models/dataTypes.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/feb2802/src/models/dataTypes.ts#L55">src/models/dataTypes.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -212,17 +289,35 @@
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="icreatejobbody.html" class="tsd-kind-icon">ICreate<wbr>Job<wbr>Body</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icreatejobbody.html#description" class="tsd-kind-icon">description</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icreatejobbody.html#expirationdate" class="tsd-kind-icon">expiration<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icreatejobbody.html#internalid" class="tsd-kind-icon">internal<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icreatejobbody.html#parameters" class="tsd-kind-icon">parameters</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icreatejobbody.html#percentage" class="tsd-kind-icon">percentage</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icreatejobbody.html#priority" class="tsd-kind-icon">priority</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icreatejobbody.html#producername" class="tsd-kind-icon">producer<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icreatejobbody.html#productname" class="tsd-kind-icon">product<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icreatejobbody.html#producttype" class="tsd-kind-icon">product<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="icreatejobbody.html#reason" class="tsd-kind-icon">reason</a>
@@ -246,22 +341,22 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="icreatetaskbody.html" class="tsd-kind-icon">ICreate<wbr>Task<wbr>Body</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="ifindtaskrequest.html" class="tsd-kind-icon">IFind<wbr>Task<wbr>Request</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="ijobresponse.html" class="tsd-kind-icon">IJob<wbr>Response</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="itaskresponse.html" class="tsd-kind-icon">ITask<wbr>Response</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="iupdatejobbody.html" class="tsd-kind-icon">IUpdate<wbr>Job<wbr>Body</a>
 					</li>
-					<li class=" tsd-kind-interface">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="iupdatetaskbody.html" class="tsd-kind-icon">IUpdate<wbr>Task<wbr>Body</a>
 					</li>
 				</ul>
