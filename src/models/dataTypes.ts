@@ -48,6 +48,7 @@ export interface IJobResponse<T, P> {
   pendingTasks: number;
   inProgressTasks: number;
   resolution?: string;
+  additionalIdentifiers?: string;
 }
 
 export interface ICreateJobBody<T, P> {
@@ -66,6 +67,7 @@ export interface ICreateJobBody<T, P> {
   producerName?: string;
   productName?: string;
   productType?: string;
+  additionalIdentifiers?: string;
 }
 
 export interface ICreateTaskBody<T> {
