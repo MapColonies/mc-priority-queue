@@ -1,8 +1,9 @@
-import { ILogger } from '@map-colonies/mc-utils';
+import { IHttpRetryConfig, ILogger } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
 import { ITaskResponse, IUpdateTaskBody, OperationStatus } from './models/dataTypes';
+import { httpClientConfig } from './models/utils';
 
 const minValidPrcentage = 0;
 const maxValidPrcentage = 100;
@@ -18,10 +19,11 @@ export class TaskHandler {
     protected jobManagerBaseUrl: string,
     protected heartbeatUrl: string,
     protected dequeueIntervalMs: number,
-    protected heartbeatIntervalMs: number
+    protected heartbeatIntervalMs: number,
+    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig
   ) {
-    this.jobManagerClient = new JobManagerClient(logger, jobType, taskType, jobManagerBaseUrl);
-    this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl);
+    this.jobManagerClient = new JobManagerClient(logger, jobType, taskType, jobManagerBaseUrl, httpRetryConfig);
+    this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl, httpRetryConfig);
   }
 
   public async waitForTask<T>(): Promise<ITaskResponse<T> | null> {

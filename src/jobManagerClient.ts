@@ -44,10 +44,10 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async getJob<T, P>(jobId: string): Promise<IJobResponse<T, P> | undefined> {
+  public async getJob<T, P>(jobId: string, shouldReturnTasks = false): Promise<IJobResponse<T, P> | undefined> {
     try {
       this.logger.info(`[JobManagerClient][getJob] jobId=${jobId}`);
-      const job = await this.get<IJobResponse<T, P>>(`/jobs/${jobId}`);
+      const job = await this.get<IJobResponse<T, P>>(`/jobs/${jobId}`, { shouldReturnTasks });
       return job;
     } catch (err) {
       this.logger.error(`[JobManagerClient][getJob] jobId=${jobId} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
