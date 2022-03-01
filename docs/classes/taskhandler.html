@@ -90,6 +90,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="taskhandler.html#heartbeatclient" class="tsd-kind-icon">heartbeat<wbr>Client</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="taskhandler.html#heartbeatintervalms" class="tsd-kind-icon">heartbeat<wbr>Interval<wbr>Ms</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="taskhandler.html#heartbeaturl" class="tsd-kind-icon">heartbeat<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="taskhandler.html#httpretryconfig" class="tsd-kind-icon">http<wbr>Retry<wbr>Config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="taskhandler.html#jobmanagerbaseurl" class="tsd-kind-icon">job<wbr>Manager<wbr>Base<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="taskhandler.html#jobmanagerclient" class="tsd-kind-icon">job<wbr>Manager<wbr>Client</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="taskhandler.html#jobtype" class="tsd-kind-icon">job<wbr>Type</a></li>
@@ -116,13 +117,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Task<wbr>Handler<span class="tsd-signature-symbol">(</span>logger<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ILogger</span>, jobType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, taskType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, jobManagerBaseUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, heartbeatUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dequeueIntervalMs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, heartbeatIntervalMs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="taskhandler.html" class="tsd-signature-type" data-tsd-kind="Class">TaskHandler</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Task<wbr>Handler<span class="tsd-signature-symbol">(</span>logger<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ILogger</span>, jobType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, taskType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, jobManagerBaseUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, heartbeatUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dequeueIntervalMs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, heartbeatIntervalMs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, httpRetryConfig<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">IHttpRetryConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="taskhandler.html" class="tsd-signature-type" data-tsd-kind="Class">TaskHandler</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L12">src/taskHandler.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L13">src/taskHandler.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -148,6 +149,9 @@
 								<li>
 									<h5>heartbeatIntervalMs: <span class="tsd-signature-type">number</span></h5>
 								</li>
+								<li>
+									<h5>httpRetryConfig: <span class="tsd-signature-type">IHttpRetryConfig</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="taskhandler.html" class="tsd-signature-type" data-tsd-kind="Class">TaskHandler</a></h4>
 						</li>
@@ -169,7 +173,7 @@
 					<div class="tsd-signature tsd-kind-icon">heartbeat<wbr>Client<span class="tsd-signature-symbol">:</span> <a href="heartbeatclient.html" class="tsd-signature-type" data-tsd-kind="Class">HeartbeatClient</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L12">src/taskHandler.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L13">src/taskHandler.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -188,6 +192,13 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="httpretryconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> http<wbr>Retry<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">http<wbr>Retry<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IHttpRetryConfig</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="jobmanagerbaseurl" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> job<wbr>Manager<wbr>Base<wbr>Url</h3>
 					<div class="tsd-signature tsd-kind-icon">job<wbr>Manager<wbr>Base<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -200,7 +211,7 @@
 					<div class="tsd-signature tsd-kind-icon">job<wbr>Manager<wbr>Client<span class="tsd-signature-symbol">:</span> <a href="jobmanagerclient.html" class="tsd-signature-type" data-tsd-kind="Class">JobManagerClient</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L11">src/taskHandler.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L12">src/taskHandler.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L93">src/taskHandler.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L95">src/taskHandler.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -270,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L37">src/taskHandler.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L39">src/taskHandler.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -293,7 +304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L55">src/taskHandler.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L57">src/taskHandler.ts:57</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -331,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L107">src/taskHandler.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L109">src/taskHandler.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -366,7 +377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/taskHandler.ts#L27">src/taskHandler.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/taskHandler.ts#L29">src/taskHandler.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -419,6 +430,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="taskhandler.html#heartbeaturl" class="tsd-kind-icon">heartbeat<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="taskhandler.html#httpretryconfig" class="tsd-kind-icon">http<wbr>Retry<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="taskhandler.html#jobmanagerbaseurl" class="tsd-kind-icon">job<wbr>Manager<wbr>Base<wbr>Url</a>

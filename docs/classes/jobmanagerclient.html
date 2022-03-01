@@ -136,7 +136,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides HttpClient.constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L7">src/jobManagerClient.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L7">src/jobManagerClient.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -224,7 +224,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L58">src/jobManagerClient.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L58">src/jobManagerClient.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -247,7 +247,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L127">src/jobManagerClient.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L127">src/jobManagerClient.ts:127</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -321,7 +321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L78">src/jobManagerClient.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L78">src/jobManagerClient.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -353,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L110">src/jobManagerClient.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L110">src/jobManagerClient.ts:110</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -418,13 +418,13 @@
 					<a name="getjob" class="tsd-anchor"></a>
 					<h3>get<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Job&lt;T, P&gt;<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ijobresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">IJobResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Job&lt;T, P&gt;<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, shouldReturnTasks<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ijobresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">IJobResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L47">src/jobManagerClient.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L47">src/jobManagerClient.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -441,6 +441,9 @@
 								<li>
 									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
 								</li>
+								<li>
+									<h5>shouldReturnTasks: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/ijobresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">IJobResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
@@ -456,7 +459,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L18">src/jobManagerClient.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L18">src/jobManagerClient.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -488,7 +491,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L35">src/jobManagerClient.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L35">src/jobManagerClient.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -736,7 +739,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L141">src/jobManagerClient.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L141">src/jobManagerClient.ts:141</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -768,7 +771,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/e568f67/src/jobManagerClient.ts#L94">src/jobManagerClient.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/MapColonies/mc-priority-queue/blob/28f20ef/src/jobManagerClient.ts#L94">src/jobManagerClient.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
