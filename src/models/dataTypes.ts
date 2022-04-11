@@ -4,6 +4,7 @@ export enum OperationStatus {
   COMPLETED = 'Completed',
   FAILED = 'Failed',
   EXPIRED = 'Expired',
+  ABORTED = 'Aborted',
 }
 
 export interface ITaskResponse<T> {
@@ -47,7 +48,6 @@ export interface IJobResponse<T, P> {
   expiredTasks: number;
   pendingTasks: number;
   inProgressTasks: number;
-  resolution?: string;
   additionalIdentifiers?: string;
 }
 
@@ -56,17 +56,16 @@ export interface ICreateJobBody<T, P> {
   version: string;
   parameters: T;
   type: string;
-  percentage?: number;
   description?: string;
   status?: OperationStatus;
   reason?: string;
   tasks?: ICreateTaskBody<P>[];
   priority?: number;
-  expirationDate?: Date;
   internalId?: string;
   producerName?: string;
   productName?: string;
   productType?: string;
+  expirationDate?: Date;
   additionalIdentifiers?: string;
 }
 
@@ -77,7 +76,6 @@ export interface ICreateTaskBody<T> {
   type?: string;
   status?: OperationStatus;
   attempts?: number;
-  percentage?: number;
 }
 
 export interface IUpdateTaskBody<T> {
@@ -96,11 +94,11 @@ export interface IUpdateJobBody<T> {
   reason?: string;
   isCleaned?: boolean;
   priority?: number;
-  expirationDate?: Date;
   internalId?: string;
   producerName?: string;
   productName?: string;
   productType?: string;
+  expirationDate?: Date;
 }
 
 export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}
