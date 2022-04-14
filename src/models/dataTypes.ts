@@ -14,11 +14,11 @@ export interface ITaskResponse<T> {
   parameters: T;
   created: string;
   updated: string;
+  type: string;
   status: OperationStatus;
   percentage?: number;
   reason: string;
   attempts: number;
-  type: string;
   resettable: boolean;
 }
 
@@ -26,29 +26,30 @@ export interface IJobResponse<T, P> {
   id: string;
   resourceId: string;
   version: string;
+  type: string;
   description: string;
   parameters: T;
+  reason: string;
+  tasks: ITaskResponse<P>[];
   created: string;
   updated: string;
   status: OperationStatus;
-  reason: string;
-  type: string;
-  priority: number;
-  tasks: ITaskResponse<P>[];
+  percentage: number;
   isCleaned: boolean;
-  expirationDate?: Date;
-  percentage?: number;
-  internalId?: string;
-  producerName?: string;
-  productName?: string;
-  productType?: string;
+  priority: number;
+  internalId: string;
+  producerName: string;
+  productName: string;
+  productType: string;
   taskCount: number;
   completedTasks: number;
   failedTasks: number;
   expiredTasks: number;
   pendingTasks: number;
   inProgressTasks: number;
-  additionalIdentifiers?: string;
+  abortedTasks: number;
+  additionalIdentifiers: string;
+  expirationDate: string;
 }
 
 export interface ICreateJobBody<T, P> {
