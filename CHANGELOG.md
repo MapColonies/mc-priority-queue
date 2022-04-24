@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v4.0.0...v4.0.1) (2022-04-24)
+
+
+### Bug Fixes
+
+* update task and job types to be the same as in the jobs DB ([#16](https://github.com/MapColonies/mc-priority-queue/issues/16)) ([a130b4a](https://github.com/MapColonies/mc-priority-queue/commit/a130b4a3ce4c52d675d2fe490c470908d606e37f))
+
 ## [4.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v3.3.0...v4.0.0) (2022-03-01)
 
 ### [3.3.1](https://github.com/MapColonies/mc-priority-queue/compare/v3.3.0...v3.3.1) (2022-01-05)
