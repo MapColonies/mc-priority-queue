@@ -30,17 +30,17 @@ export interface IJobResponse<T, P> {
   description: string;
   parameters: T;
   reason: string;
-  tasks: ITaskResponse<P>[];
+  tasks?: ITaskResponse<P>[];
   created: string;
   updated: string;
   status: OperationStatus;
   percentage: number;
   isCleaned: boolean;
   priority: number;
-  internalId: string;
-  producerName: string;
-  productName: string;
-  productType: string;
+  internalId?: string;
+  producerName?: string;
+  productName?: string;
+  productType?: string;
   taskCount: number;
   completedTasks: number;
   failedTasks: number;
@@ -48,8 +48,8 @@ export interface IJobResponse<T, P> {
   pendingTasks: number;
   inProgressTasks: number;
   abortedTasks: number;
-  additionalIdentifiers: string;
-  expirationDate: string;
+  additionalIdentifiers?: string;
+  expirationDate?: Date;
 }
 
 export interface ICreateJobBody<T, P> {
@@ -57,6 +57,7 @@ export interface ICreateJobBody<T, P> {
   version: string;
   parameters: T;
   type: string;
+  percentage?: number;
   description?: string;
   status?: OperationStatus;
   reason?: string;
@@ -77,6 +78,7 @@ export interface ICreateTaskBody<T> {
   type?: string;
   status?: OperationStatus;
   attempts?: number;
+  percentage?: number;
 }
 
 export interface IUpdateTaskBody<T> {
