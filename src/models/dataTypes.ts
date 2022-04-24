@@ -4,6 +4,7 @@ export enum OperationStatus {
   COMPLETED = 'Completed',
   FAILED = 'Failed',
   EXPIRED = 'Expired',
+  ABORTED = 'Aborted',
 }
 
 export interface ITaskResponse<T> {
@@ -13,11 +14,11 @@ export interface ITaskResponse<T> {
   parameters: T;
   created: string;
   updated: string;
+  type: string;
   status: OperationStatus;
   percentage?: number;
   reason: string;
   attempts: number;
-  type: string;
   resettable: boolean;
 }
 
@@ -25,18 +26,17 @@ export interface IJobResponse<T, P> {
   id: string;
   resourceId: string;
   version: string;
+  type: string;
   description: string;
   parameters: T;
+  reason: string;
+  tasks?: ITaskResponse<P>[];
   created: string;
   updated: string;
   status: OperationStatus;
-  reason: string;
-  type: string;
-  priority: number;
-  tasks: ITaskResponse<P>[];
+  percentage: number;
   isCleaned: boolean;
-  expirationDate?: Date;
-  percentage?: number;
+  priority: number;
   internalId?: string;
   producerName?: string;
   productName?: string;
@@ -47,8 +47,9 @@ export interface IJobResponse<T, P> {
   expiredTasks: number;
   pendingTasks: number;
   inProgressTasks: number;
-  resolution?: string;
+  abortedTasks: number;
   additionalIdentifiers?: string;
+  expirationDate?: Date;
 }
 
 export interface ICreateJobBody<T, P> {
@@ -62,11 +63,11 @@ export interface ICreateJobBody<T, P> {
   reason?: string;
   tasks?: ICreateTaskBody<P>[];
   priority?: number;
-  expirationDate?: Date;
   internalId?: string;
   producerName?: string;
   productName?: string;
   productType?: string;
+  expirationDate?: Date;
   additionalIdentifiers?: string;
 }
 
@@ -96,11 +97,11 @@ export interface IUpdateJobBody<T> {
   reason?: string;
   isCleaned?: boolean;
   priority?: number;
-  expirationDate?: Date;
   internalId?: string;
   producerName?: string;
   productName?: string;
   productType?: string;
+  expirationDate?: Date;
 }
 
 export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}
