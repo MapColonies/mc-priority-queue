@@ -50,6 +50,7 @@ export interface IJobResponse<T, P> {
   abortedTasks: number;
   additionalIdentifiers?: string;
   expirationDate?: Date;
+  domain: string;
 }
 
 export interface ICreateJobBody<T, P> {
@@ -69,6 +70,7 @@ export interface ICreateJobBody<T, P> {
   productType?: string;
   expirationDate?: Date;
   additionalIdentifiers?: string;
+  domain?: string;
 }
 
 export interface ICreateTaskBody<T> {
