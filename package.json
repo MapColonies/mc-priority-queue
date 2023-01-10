@@ -64,5 +64,8 @@
   },
   "dependencies": {
     "@map-colonies/mc-utils": "^1.6.1"
+  },
+  "peerDependencies": {
+    "@map-colonies/js-logger": "^0.0.5"
   }
 }
