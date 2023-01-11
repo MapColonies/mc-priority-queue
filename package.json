@@ -63,6 +63,7 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@map-colonies/mc-utils": "^1.3.0"
+    "@map-colonies/js-logger": "^0.0.5",
+    "@map-colonies/mc-utils": "^1.6.1"
   }
 }

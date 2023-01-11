@@ -1,4 +1,5 @@
-import { IHttpRetryConfig, ILogger } from '@map-colonies/mc-utils';
+import { IHttpRetryConfig } from '@map-colonies/mc-utils';
+import { Logger } from '@map-colonies/js-logger';
 import { NotFoundError } from '@map-colonies/error-types';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';
@@ -13,7 +14,7 @@ export class TaskHandler {
   public heartbeatClient: HeartbeatClient;
 
   public constructor(
-    protected readonly logger: ILogger,
+    protected readonly logger: Logger,
     protected jobType: string,
     protected taskType: string,
     protected jobManagerBaseUrl: string,

@@ -1,12 +1,13 @@
-import { ILogger, HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
+import { HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
+import { Logger } from '@map-colonies/js-logger';
 import { ICreateJobBody, ICreateTaskBody, IFindTaskRequest, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
 import { ICreateJobResponse } from './models/interfaces';
 import { httpClientConfig } from './models/utils';
 
 export class JobManagerClient extends HttpClient {
   public constructor(
-    protected readonly logger: ILogger,
+    protected readonly logger: Logger,
     protected jobType: string,
     protected taskType: string,
     protected jobManagerBaseUrl: string,
