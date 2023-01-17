@@ -6,8 +6,8 @@ import { HeartbeatClient } from './heartbeatClient';
 import { ITaskResponse, IUpdateTaskBody, OperationStatus } from './models/dataTypes';
 import { httpClientConfig } from './models/utils';
 
-const minValidPrcentage = 0;
-const maxValidPrcentage = 100;
+const minValidPercentage = 0;
+const maxValidPercentage = 100;
 
 export class TaskHandler {
   public jobManagerClient: JobManagerClient;
@@ -99,6 +99,7 @@ export class TaskHandler {
       this.heartbeatClient.stop(taskId);
       const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.COMPLETED,
+        percentage: maxValidPercentage,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
@@ -108,7 +109,7 @@ export class TaskHandler {
   }
 
   public async updateProgress<T>(jobId: string, taskId: string, percentage: number): Promise<void> {
-    const percentageValidValue = Math.min(Math.max(minValidPrcentage, percentage), maxValidPrcentage);
+    const percentageValidValue = Math.min(Math.max(minValidPercentage, percentage), maxValidPercentage);
     try {
       this.logger.info(`[TaskHandler][updateProgress] jobId=${jobId}, taskId=${taskId}, percentageValidValue=${percentageValidValue}`);
       const payload: IUpdateTaskBody<T> = {
