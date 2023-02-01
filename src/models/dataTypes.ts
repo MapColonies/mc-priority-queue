@@ -9,7 +9,7 @@ export enum OperationStatus {
 
 export interface ITaskResponse<T> {
   id: string;
-  jobId?: string;
+  jobId: string;
   description: string;
   parameters: T;
   created: string;
