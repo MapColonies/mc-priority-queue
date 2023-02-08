@@ -27,7 +27,7 @@ export class TaskHandler {
     this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl, httpRetryConfig);
   }
 
-  public async waitForTask<T>(): Promise<ITaskResponse<T> | null> {
+  public async waitForTask<T>(): Promise<ITaskResponse<T>> {
     let task: ITaskResponse<T> | null;
     do {
       this.logger.debug(`[TaskHandler][waitForTask]`);
