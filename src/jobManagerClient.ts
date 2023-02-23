@@ -1,8 +1,16 @@
 import { HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
 import { Logger } from '@map-colonies/js-logger';
-import { ICreateJobBody, ICreateTaskBody, IFindTaskRequest, IJobResponse, ITaskResponse, IUpdateJobBody, IUpdateTaskBody } from './models/dataTypes';
-import { ICreateJobResponse } from './models/interfaces';
+import {
+  ICreateJobBody,
+  ICreateTaskBody,
+  IFindTaskRequest,
+  ICreateJobResponse,
+  IJobResponse,
+  ITaskResponse,
+  IUpdateJobBody,
+  IUpdateTaskBody,
+} from './models/dataTypes';
 import { httpClientConfig } from './models/utils';
 
 export class JobManagerClient extends HttpClient {

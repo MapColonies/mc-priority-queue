@@ -73,6 +73,11 @@ export interface ICreateJobBody<T, P> {
   domain?: string;
 }
 
+export interface ICreateJobResponse {
+  id: string;
+  taskIds: string[];
+}
+
 export interface ICreateTaskBody<T> {
   description?: string;
   parameters: T;
