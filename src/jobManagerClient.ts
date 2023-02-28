@@ -64,16 +64,22 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async getJobs<T, P>(resourceId: string, productType: string): Promise<IJobResponse<T, P>[]> {
-    const res = await this.get<IJobResponse<T, P>[]>('/jobs', {
-      resourceId: encodeURIComponent(resourceId),
-      productType: encodeURIComponent(productType),
-      shouldReturnTasks: false,
-    });
-    if (typeof res === 'string' || res.length === 0) {
-      return [];
+  public async getJobs<T, P>(resourceId: string, productType: string, shouldReturnTasks = false): Promise<IJobResponse<T, P>[]> {
+    try {
+      this.logger.info(`[JobManagerClient][getJobs] resourceId=${resourceId} productType=${productType}, shouldReturnTasks=${shouldReturnTasks}`);
+      const res = await this.get<IJobResponse<T, P>[]>('/jobs', {
+        resourceId: encodeURIComponent(resourceId),
+        productType: encodeURIComponent(productType),
+        shouldReturnTasks: shouldReturnTasks
+      });
+      if (typeof res === 'string' || res.length === 0) {
+        return [];
+      }
+      return res;
+    } catch (err) {
+      this.logger.error(`[JobManagerClient][getJobs] resourceId=${resourceId} productType=${productType}, shouldReturnTasks=${shouldReturnTasks}, failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+      throw err;
     }
-    return res;
   }
 
   public async getJobByInternalId<T, P>(internalId: string): Promise<IJobResponse<T, P>[]> {
@@ -185,7 +191,16 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async abortJob(jobId: string): Promise<void> {
-    const abortJobUrl = `/tasks/abort/${jobId}`;
-    await this.post(abortJobUrl);
+    try {
+      this.logger.info(`[JobManagerClient][abortJob] jobId=${jobId}`);
+      const abortJobUrl = `/tasks/abort/${jobId}`;
+      await this.post(abortJobUrl);
+
+    } catch (err) {
+      this.logger.error(
+        `[JobManagerClient][abortJob] jobId=${jobId}, failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`
+      );
+      throw err;
+    }
   }
 }
