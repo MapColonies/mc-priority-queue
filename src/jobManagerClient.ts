@@ -91,9 +91,7 @@ export class JobManagerClient extends HttpClient {
 
   public async getJobByInternalId<T, P>(internalId: string): Promise<IJobResponse<T, P>[]> {
     try {
-      this.logger.debug(
-        `[JobManagerClient][getJobByInternalId] internalId=${internalId}`
-      );
+      this.logger.debug(`[JobManagerClient][getJobByInternalId] internalId=${internalId}`);
       const getLayerUrl = `/jobs`;
       const res = await this.get<IJobResponse<T, P>[]>(getLayerUrl, { internalId, shouldReturnTasks: false });
       if (typeof res === 'string' || res.length === 0) {
@@ -102,10 +100,7 @@ export class JobManagerClient extends HttpClient {
       return res;
     } catch (err) {
       this.logger.error(
-        `[JobManagerClient][getJobByInternalId] internalId=${internalId}, failed error=${JSON.stringify(
-          err,
-          Object.getOwnPropertyNames(err)
-        )}`
+        `[JobManagerClient][getJobByInternalId] internalId=${internalId}, failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`
       );
       throw err;
     }
