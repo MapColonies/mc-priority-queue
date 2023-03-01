@@ -66,7 +66,7 @@ export class JobManagerClient extends HttpClient {
 
   public async getJobs<T, P>(resourceId: string, productType: string, shouldReturnTasks = false): Promise<IJobResponse<T, P>[]> {
     try {
-      this.logger.info(
+      this.logger.debug(
         `[JobManagerClient][getJobs] resourceId=${resourceId} productType=${productType}, shouldReturnTasks=${shouldReturnTasks.toString()}`
       );
       const res = await this.get<IJobResponse<T, P>[]>('/jobs', {
@@ -90,12 +90,25 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async getJobByInternalId<T, P>(internalId: string): Promise<IJobResponse<T, P>[]> {
-    const getLayerUrl = `/jobs`;
-    const res = await this.get<IJobResponse<T, P>[]>(getLayerUrl, { internalId, shouldReturnTasks: false });
-    if (typeof res === 'string' || res.length === 0) {
-      return [];
+    try {
+      this.logger.debug(
+        `[JobManagerClient][getJobByInternalId] internalId=${internalId}`
+      );
+      const getLayerUrl = `/jobs`;
+      const res = await this.get<IJobResponse<T, P>[]>(getLayerUrl, { internalId, shouldReturnTasks: false });
+      if (typeof res === 'string' || res.length === 0) {
+        return [];
+      }
+      return res;
+    } catch (err) {
+      this.logger.error(
+        `[JobManagerClient][getJobByInternalId] internalId=${internalId}, failed error=${JSON.stringify(
+          err,
+          Object.getOwnPropertyNames(err)
+        )}`
+      );
+      throw err;
     }
-    return res;
   }
 
   public async consume<T>(): Promise<ITaskResponse<T> | null> {
@@ -120,7 +133,7 @@ export class JobManagerClient extends HttpClient {
 
   public async enqueueTask<T>(jobId: string, payload: ICreateTaskBody<T>): Promise<void> {
     try {
-      this.logger.info(`[JobManagerClient][enqueueTask] jobId=${jobId}, payload=${JSON.stringify(payload)}`);
+      this.logger.debug(`[JobManagerClient][enqueueTask] jobId=${jobId}, payload=${JSON.stringify(payload)}`);
       const createTaskUrl = `/jobs/${jobId}/tasks`;
       await this.post(createTaskUrl, payload);
     } catch (err) {
@@ -199,7 +212,7 @@ export class JobManagerClient extends HttpClient {
 
   public async abortJob(jobId: string): Promise<void> {
     try {
-      this.logger.info(`[JobManagerClient][abortJob] jobId=${jobId}`);
+      this.logger.debug(`[JobManagerClient][abortJob] jobId=${jobId}`);
       const abortJobUrl = `/tasks/abort/${jobId}`;
       await this.post(abortJobUrl);
     } catch (err) {
