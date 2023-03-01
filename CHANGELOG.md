@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v3.1.0...v4.1.0) (2023-03-01)
+
+
+### Features
+
+* fix dequeue log ([#9](https://github.com/MapColonies/mc-priority-queue/issues/9)) ([a336be1](https://github.com/MapColonies/mc-priority-queue/commit/a336be1a3570c628ffce0b44a2ea204e2cd9f980))
+
+
+### Bug Fixes
+
+* create job response to moved to data types ([#22](https://github.com/MapColonies/mc-priority-queue/issues/22)) ([e10772a](https://github.com/MapColonies/mc-priority-queue/commit/e10772a7128c46be8f53d4887711eeacc996f605))
+* require jobId in task response ([#21](https://github.com/MapColonies/mc-priority-queue/issues/21)) ([54ecd8a](https://github.com/MapColonies/mc-priority-queue/commit/54ecd8a43319996c4a0c1faa95ca730e131ae477))
+* update task and job types to be the same as in the jobs DB ([#16](https://github.com/MapColonies/mc-priority-queue/issues/16)) ([a130b4a](https://github.com/MapColonies/mc-priority-queue/commit/a130b4a3ce4c52d675d2fe490c470908d606e37f))
+
 ### [4.0.5](https://github.com/MapColonies/mc-priority-queue/compare/v4.0.4...v4.0.5) (2023-02-23)
 
 
