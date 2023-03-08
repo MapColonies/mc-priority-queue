@@ -8,10 +8,11 @@ export class HeartbeatClient extends HttpClient {
     protected readonly logger: Logger,
     protected intervalMs: number,
     protected heartbeatBaseUrl: string,
-    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig,
-    protected targetService: string = 'heartbeatClient'
+    httpRetryConfig: IHttpRetryConfig | undefined = httpClientConfig,
+    targetService: string | undefined = 'heartbeatClient',
+    disableDebugLogs: boolean | undefined = true
   ) {
-    super(logger, heartbeatBaseUrl, targetService, httpRetryConfig, true);
+    super(logger, heartbeatBaseUrl, targetService, httpRetryConfig, disableDebugLogs);
   }
 
   public start(taskId: string): void {

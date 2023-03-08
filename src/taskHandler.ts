@@ -20,14 +20,30 @@ export class TaskHandler {
     protected jobManagerBaseUrl: string,
     protected heartbeatUrl: string,
     protected dequeueIntervalMs: number,
-    protected heartbeatIntervalMs: number,
-    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig,
-    protected jobTargetService: string = 'jobManagerClient',
-    protected heartbeatTargetService: string = 'heartbeatClient',
-    protected disableDebugLogs = true
+    heartbeatIntervalMs: number,
+    httpRetryConfig: IHttpRetryConfig | undefined = httpClientConfig,
+    jobTargetService: string | undefined = 'jobManagerClient',
+    heartbeatTargetService: string | undefined = 'heartbeatClient',
+    disableJobManagerDebugLogs: boolean | undefined = true,
+    disableHeartbeatDebugLogs: boolean | undefined = true
   ) {
-    this.jobManagerClient = new JobManagerClient(logger, jobType, taskType, jobManagerBaseUrl, httpRetryConfig, jobTargetService, disableDebugLogs);
-    this.heartbeatClient = new HeartbeatClient(logger, heartbeatIntervalMs, heartbeatUrl, httpRetryConfig, heartbeatTargetService);
+    this.jobManagerClient = new JobManagerClient(
+      logger,
+      jobType,
+      taskType,
+      jobManagerBaseUrl,
+      httpRetryConfig,
+      jobTargetService,
+      disableJobManagerDebugLogs
+    );
+    this.heartbeatClient = new HeartbeatClient(
+      logger,
+      heartbeatIntervalMs,
+      heartbeatUrl,
+      httpRetryConfig,
+      heartbeatTargetService,
+      disableHeartbeatDebugLogs
+    );
   }
 
   public async waitForTask<T>(): Promise<ITaskResponse<T>> {

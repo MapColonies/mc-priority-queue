@@ -20,9 +20,9 @@ export class JobManagerClient extends HttpClient {
     protected jobType: string,
     protected taskType: string,
     protected jobManagerBaseUrl: string,
-    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig,
-    protected targetService: string = 'jobManagerClient',
-    protected disableDebugLogs = true
+    httpRetryConfig: IHttpRetryConfig | undefined = httpClientConfig,
+    targetService: string | undefined = 'jobManagerClient',
+    disableDebugLogs: boolean | undefined = true
   ) {
     super(logger, jobManagerBaseUrl, targetService, httpRetryConfig, disableDebugLogs);
   }
@@ -68,10 +68,10 @@ export class JobManagerClient extends HttpClient {
 
   public async getJobs<T, P>(findJobsParams: IFindJobsRequest): Promise<IJobResponse<T, P>[]> {
     const getJobsUrl = '/jobs';
-    if (findJobsParams.resourceId) {
+    if (findJobsParams.resourceId !== undefined) {
       findJobsParams.resourceId = encodeURIComponent(findJobsParams.resourceId);
     }
-    if (findJobsParams.productType) {
+    if (findJobsParams.productType !== undefined) {
       findJobsParams.productType = encodeURIComponent(findJobsParams.productType);
     }
     try {
