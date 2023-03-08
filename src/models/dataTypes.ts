@@ -111,4 +111,17 @@ export interface IUpdateJobBody<T> {
   expirationDate?: Date;
 }
 
+export interface IFindJobsRequest {
+  resourceId?: string;
+  version?: string;
+  isCleaned?: boolean;
+  status?: OperationStatus;
+  type?: string;
+  shouldReturnTasks?: boolean;
+  productType?: string;
+  fromDate?: string;
+  tillDate?: string;
+  internalId?: string;
+}
+
 export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}
