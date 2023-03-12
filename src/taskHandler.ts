@@ -113,7 +113,7 @@ export class TaskHandler {
   public async updateProgress<T>(jobId: string, taskId: string, percentage: number): Promise<void> {
     const percentageValidValue = Math.min(Math.max(minValidPercentage, percentage), maxValidPercentage);
     try {
-      this.logger.info({ jobId, taskId, percentageValidValue }, `updateProgress of task with jobId=${jobId}, taskId=${taskId}`);
+      this.logger.debug({ jobId, taskId, percentageValidValue }, `updateProgress of task with jobId=${jobId}, taskId=${taskId}`);
       const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.IN_PROGRESS,
         percentage: percentageValidValue,

@@ -29,7 +29,7 @@ export class JobManagerClient extends HttpClient {
   public async getTask<T>(jobId: string, taskId: string): Promise<ITaskResponse<T> | null> {
     const getTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
     try {
-      this.logger.info({ jobId, taskId, url: getTaskUrl, targetService: this.targetService }, `getTask jobId=${jobId}, taskId=${taskId}`);
+      this.logger.debug({ jobId, taskId, url: getTaskUrl, targetService: this.targetService }, `getTask jobId=${jobId}, taskId=${taskId}`);
       const task = await this.get<ITaskResponse<T>>(getTaskUrl);
       return task;
     } catch (err) {
@@ -44,7 +44,7 @@ export class JobManagerClient extends HttpClient {
   public async getTasksForJob<T>(jobId: string): Promise<ITaskResponse<T>[] | null> {
     const getTaskUrl = `/jobs/${jobId}/tasks`;
     try {
-      this.logger.info({ jobId, url: getTaskUrl, targetService: this.targetService }, `getTasksForJob jobId=${jobId}`);
+      this.logger.debug({ jobId, url: getTaskUrl, targetService: this.targetService }, `getTasksForJob jobId=${jobId}`);
       const tasks = await this.get<ITaskResponse<T>[]>(getTaskUrl);
       return tasks;
     } catch (err) {
@@ -56,7 +56,7 @@ export class JobManagerClient extends HttpClient {
   public async getJob<T, P>(jobId: string, shouldReturnTasks = false): Promise<IJobResponse<T, P> | undefined> {
     const getJobUrl = `/jobs/${jobId}`;
     try {
-      this.logger.info({ jobId, url: getJobUrl, targetService: this.targetService }, `getJob jobId=${jobId}`);
+      this.logger.debug({ jobId, url: getJobUrl, targetService: this.targetService }, `getJob jobId=${jobId}`);
       const job = await this.get<IJobResponse<T, P>>(getJobUrl, { shouldReturnTasks });
       return job;
     } catch (err) {
@@ -74,7 +74,7 @@ export class JobManagerClient extends HttpClient {
       findJobsParams.productType = encodeURIComponent(findJobsParams.productType);
     }
     try {
-      this.logger.info({ url: getJobsUrl, targetService: this.targetService, findJobsParams }, `getJobs`);
+      this.logger.debug({ url: getJobsUrl, targetService: this.targetService, findJobsParams }, `getJobs`);
       const res = await this.get<IJobResponse<T, P>[]>(getJobsUrl, {
         resourceId: findJobsParams.resourceId,
         version: findJobsParams.version,
