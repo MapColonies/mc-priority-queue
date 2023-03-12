@@ -18,7 +18,6 @@ export class JobManagerClient extends HttpClient {
   public constructor(
     protected readonly logger: Logger,
     protected jobType: string,
-    protected taskType: string,
     protected jobManagerBaseUrl: string,
     httpRetryConfig: IHttpRetryConfig | undefined = httpClientConfig,
     targetService: string | undefined = 'jobManagerClient',
@@ -98,8 +97,8 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async consume<T>(): Promise<ITaskResponse<T> | null> {
-    const consumeTaskUrl = `/tasks/${this.jobType}/${this.taskType}/startPending`;
+  public async consume<T>(taskType: string): Promise<ITaskResponse<T> | null> {
+    const consumeTaskUrl = `/tasks/${this.jobType}/${taskType}/startPending`;
     try {
       const taskResponse = await this.post<ITaskResponse<T>>(consumeTaskUrl);
       return taskResponse;
@@ -108,7 +107,7 @@ export class JobManagerClient extends HttpClient {
         return null;
       } else {
         this.logger.error(
-          { err, url: consumeTaskUrl, targetService: this.targetService, jobType: this.jobType, taskType: this.taskType },
+          { err, url: consumeTaskUrl, targetService: this.targetService, jobType: this.jobType, taskType: taskType },
           `failed to consume task`
         );
         throw err;

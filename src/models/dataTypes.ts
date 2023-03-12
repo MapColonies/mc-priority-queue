@@ -86,6 +86,7 @@ export interface ICreateTaskBody<T> {
   status?: OperationStatus;
   attempts?: number;
   percentage?: number;
+  blockDuplication?: boolean;
 }
 
 export interface IUpdateTaskBody<T> {
