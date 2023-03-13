@@ -3,7 +3,7 @@ import { Logger } from '@map-colonies/js-logger';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
-  public intervalKey: NodeJS.Timer | null = null;
+  public intervalKey: number | null = null;
   public constructor(
     protected readonly logger: Logger,
     protected intervalMs: number,
