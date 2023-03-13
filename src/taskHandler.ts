@@ -39,7 +39,11 @@ export class TaskHandler {
 
   public async waitForTask<T>(taskType: string): Promise<ITaskResponse<T>> {
     let task: ITaskResponse<T> | null;
-    this.logger.info({ jobType: this.jobType, taskType }, `waitForTask jobType=${this.jobType}, taskType=${taskType}`);
+    this.logger.info({
+      jobType: this.jobType,
+      taskType,
+      msg: `waitForTask jobType=${this.jobType}, taskType=${taskType}`,
+    });
     do {
       task = await this.dequeue(taskType);
       await new Promise((resolve) => setTimeout(resolve, this.dequeueIntervalMs));
@@ -59,7 +63,13 @@ export class TaskHandler {
       if (err instanceof NotFoundError) {
         return null;
       } else {
-        this.logger.error({ err, jobType: this.jobType, taskType }, `dequeue FAILED for jobType=${this.jobType}, taskType=${taskType}`);
+        this.logger.error({
+          err,
+          jobType: this.jobType,
+          taskType,
+          msg: `dequeue FAILED for jobType=${this.jobType}, taskType=${taskType}`,
+          errorMessage: (err as { message: string }).message,
+        });
         throw err;
       }
     }
@@ -67,7 +77,13 @@ export class TaskHandler {
 
   public async reject<T>(jobId: string, taskId: string, isRecoverable: boolean, reason?: string): Promise<void> {
     try {
-      this.logger.info({ jobId, taskId, isRecoverable, reason }, `reject task jobId=${jobId}, taskId=${taskId}`);
+      this.logger.info({
+        jobId,
+        taskId,
+        isRecoverable,
+        reason,
+        msg: `reject task jobId=${jobId}, taskId=${taskId}`,
+      });
       this.heartbeatClient.stop(taskId);
       let payload: IUpdateTaskBody<T> | undefined;
       if (isRecoverable) {
@@ -86,18 +102,37 @@ export class TaskHandler {
       }
 
       if (payload !== undefined) {
-        this.logger.info({ jobId, taskId, isRecoverable, reason, payload }, `reject task, update with payload, jobId=${jobId}, taskId=${taskId}`);
+        this.logger.info({
+          jobId,
+          taskId,
+          isRecoverable,
+          reason,
+          payload,
+          msg: `reject task, update with payload, jobId=${jobId}, taskId=${taskId}`,
+        });
         await this.jobManagerClient.updateTask(jobId, taskId, payload);
       }
     } catch (err) {
-      this.logger.error({ err, jobId, taskId, isRecoverable, reason }, `reject task FAILED, jobId=${jobId}, taskId=${taskId}`);
+      this.logger.error({
+        err,
+        jobId,
+        taskId,
+        isRecoverable,
+        reason,
+        msg: `reject task FAILED, jobId=${jobId}, taskId=${taskId}`,
+        errorMessage: (err as { message: string }).message,
+      });
       throw err;
     }
   }
 
   public async ack<T>(jobId: string, taskId: string): Promise<void> {
     try {
-      this.logger.info({ jobId, taskId }, `ack task with jobId=${jobId}, taskId=${taskId}`);
+      this.logger.info({
+        jobId,
+        taskId,
+        msg: `ack task with jobId=${jobId}, taskId=${taskId}`,
+      });
       this.heartbeatClient.stop(taskId);
       const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.COMPLETED,
@@ -105,7 +140,13 @@ export class TaskHandler {
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
-      this.logger.error({ err, jobId, taskId }, `ack task failed with jobId=${jobId}, taskId=${taskId}`);
+      this.logger.error({
+        err,
+        jobId,
+        taskId,
+        msg: `ack task failed with jobId=${jobId}, taskId=${taskId}`,
+        errorMessage: (err as { message: string }).message,
+      });
       throw err;
     }
   }
@@ -113,14 +154,26 @@ export class TaskHandler {
   public async updateProgress<T>(jobId: string, taskId: string, percentage: number): Promise<void> {
     const percentageValidValue = Math.min(Math.max(minValidPercentage, percentage), maxValidPercentage);
     try {
-      this.logger.debug({ jobId, taskId, percentageValidValue }, `updateProgress of task with jobId=${jobId}, taskId=${taskId}`);
+      this.logger.debug({
+        jobId,
+        taskId,
+        percentageValidValue,
+        msg: `updateProgress of task with jobId=${jobId}, taskId=${taskId}`,
+      });
       const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.IN_PROGRESS,
         percentage: percentageValidValue,
       };
       await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
-      this.logger.info({ err, jobId, taskId, percentageValidValue }, `updateProgress of task FAILED with jobId=${jobId}, taskId=${taskId}`);
+      this.logger.info({
+        err,
+        jobId,
+        taskId,
+        percentageValidValue,
+        msg: `updateProgress of task FAILED with jobId=${jobId}, taskId=${taskId}`,
+        errorMessage: (err as { message: string }).message,
+      });
       throw err;
     }
   }
