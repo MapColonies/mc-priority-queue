@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v4.1.0...v5.0.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* update API and logs (#24)
+
+### Features
+
+* update API and logs ([#24](https://github.com/MapColonies/mc-priority-queue/issues/24)) ([f856331](https://github.com/MapColonies/mc-priority-queue/commit/f856331f04a75cc3b88bd8c5242e2222367a1852))
+
 ## [4.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v3.1.0...v4.1.0) (2023-03-01)
 
 
