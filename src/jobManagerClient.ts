@@ -261,6 +261,16 @@ export class JobManagerClient extends HttpClient {
         msg: `createJob`,
       });
       const res = await this.post<ICreateJobResponse>(createJobUrl, payload);
+      this.logger.info({
+        url: createJobUrl,
+        targetService: this.targetService,
+        res,
+        jobId: res?.id,
+        resourceId: payload.resourceId,
+        jobType: payload.type,
+        version: payload.version,
+        msg: `Job id ${res?.id} created for resourceId: ${payload.resourceId}, version: ${payload.version}, type: ${payload.type}`,
+      });
       return res;
     } catch (err) {
       this.logger.error({
