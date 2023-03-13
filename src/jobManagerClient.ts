@@ -27,7 +27,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async getTask<T>(jobId: string, taskId: string): Promise<ITaskResponse<T> | null> {
-    const getTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
+    const getTaskUrl = this.getJobAndTaskUrl(jobId, taskId);
     try {
       this.logger.debug({
         jobId,
@@ -53,7 +53,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async getTasksForJob<T>(jobId: string): Promise<ITaskResponse<T>[] | null> {
-    const getTaskUrl = `/jobs/${jobId}/tasks`;
+    const getTaskUrl = this.getTasksUrl(jobId);
     try {
       this.logger.debug({
         jobId,
@@ -77,7 +77,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async getJob<T, P>(jobId: string, shouldReturnTasks = false): Promise<IJobResponse<T, P> | undefined> {
-    const getJobUrl = `/jobs/${jobId}`;
+    const getJobUrl = this.getJobUrl(jobId);
     try {
       this.logger.debug({
         jobId,
@@ -101,7 +101,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async getJobs<T, P>(findJobsParams: IFindJobsRequest): Promise<IJobResponse<T, P>[]> {
-    const getJobsUrl = '/jobs';
+    const getJobsUrl = this.getJobsUrl();
     if (findJobsParams.resourceId !== undefined) {
       findJobsParams.resourceId = encodeURIComponent(findJobsParams.resourceId);
     }
@@ -168,7 +168,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async enqueueTask<T>(jobId: string, payload: ICreateTaskBody<T>): Promise<void> {
-    const createTaskUrl = `/jobs/${jobId}/tasks`;
+    const createTaskUrl = this.getTasksUrl(jobId);
     try {
       this.logger.debug({
         jobId,
@@ -192,7 +192,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async updateTask<T>(jobId: string, taskId: string, payload: IUpdateTaskBody<T>): Promise<void> {
-    const updateTaskUrl = `/jobs/${jobId}/tasks/${taskId}`;
+    const updateTaskUrl = this.getJobAndTaskUrl(jobId, taskId);
     try {
       this.logger.info({
         url: updateTaskUrl,
@@ -252,7 +252,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async createJob<T, P>(payload: ICreateJobBody<T, P>): Promise<ICreateJobResponse> {
-    const createJobUrl = `/jobs`;
+    const createJobUrl = this.getJobsUrl();
     try {
       this.logger.info({
         url: createJobUrl,
@@ -276,7 +276,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async updateJob<T>(jobId: string, payload: IUpdateJobBody<T>): Promise<void> {
-    const updateJobUrl = `/jobs/${jobId}`;
+    const updateJobUrl = this.getJobUrl(jobId);
     try {
       this.logger.info({
         url: updateJobUrl,
@@ -321,5 +321,25 @@ export class JobManagerClient extends HttpClient {
       });
       throw err;
     }
+  }
+
+  protected getJobAndTaskUrl(jobId: string, taskId: string): string {
+    const taskUrl = `/jobs/${jobId}/tasks/${taskId}`;
+    return taskUrl;
+  }
+
+  protected getJobsUrl(): string {
+    const jobsUrl = '/jobs';
+    return jobsUrl;
+  }
+
+  protected getJobUrl(jobId: string): string {
+    const jobUrl = `/jobs/${jobId}`;
+    return jobUrl;
+  }
+
+  protected getTasksUrl(jobId: string): string {
+    const tasksUrl = `/jobs/${jobId}/tasks`;
+    return tasksUrl;
   }
 }
