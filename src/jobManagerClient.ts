@@ -265,11 +265,11 @@ export class JobManagerClient extends HttpClient {
         url: createJobUrl,
         targetService: this.targetService,
         res,
-        jobId: res?.id,
+        jobId: res.id,
         resourceId: payload.resourceId,
         jobType: payload.type,
         version: payload.version,
-        msg: `Job id ${res?.id} created for resourceId: ${payload.resourceId}, version: ${payload.version}, type: ${payload.type}`,
+        msg: `Job id ${res.id} created for resourceId: ${payload.resourceId}, version: ${payload.version}, type: ${payload.type}`,
       });
       return res;
     } catch (err) {
