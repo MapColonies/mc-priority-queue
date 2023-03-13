@@ -86,6 +86,7 @@ export interface ICreateTaskBody<T> {
   status?: OperationStatus;
   attempts?: number;
   percentage?: number;
+  blockDuplication?: boolean;
 }
 
 export interface IUpdateTaskBody<T> {
@@ -109,6 +110,19 @@ export interface IUpdateJobBody<T> {
   productName?: string;
   productType?: string;
   expirationDate?: Date;
+}
+
+export interface IFindJobsRequest {
+  resourceId?: string;
+  version?: string;
+  isCleaned?: boolean;
+  status?: OperationStatus;
+  type?: string;
+  shouldReturnTasks?: boolean;
+  productType?: string;
+  fromDate?: string;
+  tillDate?: string;
+  internalId?: string;
 }
 
 export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}

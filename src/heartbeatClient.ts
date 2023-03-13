@@ -3,18 +3,25 @@ import { Logger } from '@map-colonies/js-logger';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
-  public intervalKey: NodeJS.Timeout | null = null;
+  public intervalKey: NodeJS.Timer | null = null;
   public constructor(
     protected readonly logger: Logger,
     protected intervalMs: number,
     protected heartbeatBaseUrl: string,
-    protected httpRetryConfig: IHttpRetryConfig = httpClientConfig
+    httpRetryConfig: IHttpRetryConfig | undefined = httpClientConfig,
+    targetService: string | undefined = 'heartbeatClient',
+    disableDebugLogs: boolean | undefined = true
   ) {
-    super(logger, heartbeatBaseUrl, 'heartbeatClient', httpRetryConfig);
+    super(logger, heartbeatBaseUrl, targetService, httpRetryConfig, disableDebugLogs);
   }
 
   public start(taskId: string): void {
-    this.logger.info(`[HeartbeatClient][start] taskId=${taskId}`);
+    this.logger.info({
+      taskId,
+      url: this.heartbeatBaseUrl,
+      targetService: this.targetService,
+      msg: `start heartbeat for taskId=${taskId}`,
+    });
     if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
@@ -29,7 +36,12 @@ export class HeartbeatClient extends HttpClient {
   }
 
   public stop(taskId: string): void {
-    this.logger.info(`[HeartbeatClient][stop] taskId=${taskId}`);
+    this.logger.info({
+      taskId,
+      url: this.heartbeatBaseUrl,
+      targetService: this.targetService,
+      msg: `stop heartbeat for taskId=${taskId}`,
+    });
     if (this.intervalKey !== null) {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
@@ -38,11 +50,17 @@ export class HeartbeatClient extends HttpClient {
 
   public async send(taskId: number): Promise<void> {
     try {
-      this.logger.debug(`[HeartbeatClient][send] taskId=${taskId}`);
       const heartbeatUrl = `/heartbeat/${taskId}`;
       await this.post(heartbeatUrl);
     } catch (err) {
-      this.logger.error(`[HeartbeatClient][send] taskId=${taskId} failed error=${JSON.stringify(err, Object.getOwnPropertyNames(err))}`);
+      this.logger.error({
+        err,
+        taskId,
+        url: this.heartbeatBaseUrl,
+        targetService: this.targetService,
+        msg: `send heartbeat failed for taskId=${taskId}`,
+        errorMessage: (err as { message: string }).message,
+      });
     }
   }
 }
