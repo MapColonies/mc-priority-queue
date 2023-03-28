@@ -76,7 +76,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async getJob<T, P>(jobId: string, shouldReturnTasks = false): Promise<IJobResponse<T, P> | undefined> {
+  public async getJob<T, P>(jobId: string, shouldReturnTasks = false): Promise<IJobResponse<T, P>> {
     const getJobUrl = this.getJobUrl(jobId);
     try {
       this.logger.debug({
