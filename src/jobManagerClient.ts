@@ -96,7 +96,7 @@ export class JobManagerClient extends HttpClient {
         msg: `failed to getJob for jobId=${jobId}`,
         errorMessage: (err as { message: string }).message,
       });
-      return undefined;
+      throw err;
     }
   }
 
