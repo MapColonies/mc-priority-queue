@@ -26,7 +26,7 @@ export class JobManagerClient extends HttpClient {
     super(logger, jobManagerBaseUrl, targetService, httpRetryConfig, disableDebugLogs);
   }
 
-  public async getTask<T>(jobId: string, taskId: string): Promise<ITaskResponse<T> | null> {
+  public async getTask<T>(jobId: string, taskId: string): Promise<ITaskResponse<T>> {
     const getTaskUrl = this.getJobAndTaskUrl(jobId, taskId);
     try {
       this.logger.debug({
@@ -52,7 +52,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async getTasksForJob<T>(jobId: string): Promise<ITaskResponse<T>[] | null> {
+  public async getTasksForJob<T>(jobId: string): Promise<ITaskResponse<T>[]> {
     const getTaskUrl = this.getTasksUrl(jobId);
     try {
       this.logger.debug({
@@ -218,7 +218,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async findTasks<T>(criteria: IFindTaskRequest<T>): Promise<ITaskResponse<T>[] | undefined> {
+  public async findTasks<T>(criteria: IFindTaskRequest<T>): Promise<ITaskResponse<T>[] | null> {
     const findTaskUrl = '/tasks/find';
     this.logger.debug({
       url: findTaskUrl,
@@ -236,7 +236,7 @@ export class JobManagerClient extends HttpClient {
           targetService: this.targetService,
           msg: `findTasks response - no tasks match specified criteria`,
         });
-        return undefined;
+        return null;
       } else {
         this.logger.error({
           err,
