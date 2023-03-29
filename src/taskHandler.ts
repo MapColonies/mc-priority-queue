@@ -88,30 +88,25 @@ export class TaskHandler {
       let payload: IUpdateTaskBody<T> | undefined;
       if (isRecoverable) {
         const task = await this.jobManagerClient.getTask(jobId, taskId);
-        if (task) {
-          payload = {
-            status: OperationStatus.PENDING,
-            attempts: task.attempts + 1,
-            reason: reason,
-          };
-        }
+        payload = {
+          status: OperationStatus.PENDING,
+          attempts: task.attempts + 1,
+          reason: reason,
+        };
       } else {
         payload = {
           status: OperationStatus.FAILED,
         };
       }
-
-      if (payload !== undefined) {
-        this.logger.info({
-          jobId,
-          taskId,
-          isRecoverable,
-          reason,
-          payload,
-          msg: `reject task, update with payload, jobId=${jobId}, taskId=${taskId}`,
-        });
-        await this.jobManagerClient.updateTask(jobId, taskId, payload);
-      }
+      this.logger.info({
+        jobId,
+        taskId,
+        isRecoverable,
+        reason,
+        payload,
+        msg: `reject task, update with payload, jobId=${jobId}, taskId=${taskId}`,
+      });
+      await this.jobManagerClient.updateTask(jobId, taskId, payload);
     } catch (err) {
       this.logger.error({
         err,
