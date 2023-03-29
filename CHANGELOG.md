@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v5.0.0...v5.0.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* throws error instead of returning undefined (MAPCO-2988) ([#26](https://github.com/MapColonies/mc-priority-queue/issues/26)) ([0a59fb1](https://github.com/MapColonies/mc-priority-queue/commit/0a59fb11df68fea933d79ff8d70a0f991abc1ece))
+
 ## [5.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v4.1.0...v5.0.0) (2023-03-13)
 
 
