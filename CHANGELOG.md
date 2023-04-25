@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v5.0.1...v6.0.0) (2023-04-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* update major dependecies according to ts boilerplate (#28)
+
+* update major dependecies according to ts boilerplate ([#28](https://github.com/MapColonies/mc-priority-queue/issues/28)) ([e7fc374](https://github.com/MapColonies/mc-priority-queue/commit/e7fc374f7b3aef63cd0336b369eee451fbc7d68f))
+
 ### [5.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v5.0.0...v5.0.1) (2023-03-29)
 
 
