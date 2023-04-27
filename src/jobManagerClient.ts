@@ -334,7 +334,7 @@ export class JobManagerClient extends HttpClient {
   }
 
   public async createTaskForJob<T>(jobId: string, taskBody: ICreateTaskBody<T>): Promise<void> {
-    const createTaskForJobUrl = `/jobs/${jobId}/tasks`;
+    const createTaskForJobUrl = this.getTaskForJobUrl(jobId);
     try {
       this.logger.debug({ jobId, msg: `createTaskForJob of task with jobId=${jobId}` });
 
@@ -350,6 +350,11 @@ export class JobManagerClient extends HttpClient {
       });
       throw err;
     }
+  }
+
+  protected getTaskForJobUrl(jobId: string): string {
+    const taskForJobUrl = `/jobs/${jobId}/tasks`;
+    return taskForJobUrl;
   }
 
   protected getJobAndTaskUrl(jobId: string, taskId: string): string {
