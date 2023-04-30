@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v6.0.0...v6.1.0) (2023-04-30)
+
+
+### Features
+
+* create task for job ([#30](https://github.com/MapColonies/mc-priority-queue/issues/30)) ([969c30f](https://github.com/MapColonies/mc-priority-queue/commit/969c30f7fce57c3708732d291c2c5b3cd8aad63c))
+
 ## [6.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v5.0.1...v6.0.0) (2023-04-25)
 
 
