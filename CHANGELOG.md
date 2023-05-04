@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.1.1](https://github.com/MapColonies/mc-priority-queue/compare/v6.1.0...v6.1.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* async send interval operation ([#31](https://github.com/MapColonies/mc-priority-queue/issues/31)) ([fc21435](https://github.com/MapColonies/mc-priority-queue/commit/fc21435b117a950de703dc092f708c79e5132ae2))
+
 ## [6.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v6.0.0...v6.1.0) (2023-04-30)
 
 
