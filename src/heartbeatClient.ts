@@ -3,7 +3,7 @@ import { Logger } from '@map-colonies/js-logger';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
-  public intervalKey: number | null = null;
+  public intervalKey: NodeJS.Timer | null = null;
   public constructor(
     protected readonly logger: Logger,
     protected intervalMs: number,
@@ -27,11 +27,11 @@ export class HeartbeatClient extends HttpClient {
       this.intervalKey = null;
     }
     this.intervalKey = setInterval(
-      () => {
-        void this.send;
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      async () => {
+        await this.send(taskId);
       },
-      this.intervalMs,
-      taskId
+      this.intervalMs
     );
   }
 
@@ -48,7 +48,7 @@ export class HeartbeatClient extends HttpClient {
     }
   }
 
-  public async send(taskId: number): Promise<void> {
+  public async send(taskId: string): Promise<void> {
     try {
       const heartbeatUrl = `/heartbeat/${taskId}`;
       await this.post(heartbeatUrl);
