@@ -15,7 +15,6 @@ export class TaskHandler {
 
   public constructor(
     protected readonly logger: Logger,
-    protected jobType: string,
     protected jobManagerBaseUrl: string,
     protected heartbeatUrl: string,
     protected dequeueIntervalMs: number,
@@ -26,7 +25,7 @@ export class TaskHandler {
     disableJobManagerDebugLogs: boolean | undefined = true,
     disableHeartbeatDebugLogs: boolean | undefined = true
   ) {
-    this.jobManagerClient = new JobManagerClient(logger, jobType, jobManagerBaseUrl, httpRetryConfig, jobTargetService, disableJobManagerDebugLogs);
+    this.jobManagerClient = new JobManagerClient(logger, jobManagerBaseUrl, httpRetryConfig, jobTargetService, disableJobManagerDebugLogs);
     this.heartbeatClient = new HeartbeatClient(
       logger,
       heartbeatIntervalMs,
@@ -37,23 +36,23 @@ export class TaskHandler {
     );
   }
 
-  public async waitForTask<T>(taskType: string): Promise<ITaskResponse<T>> {
+  public async waitForTask<T>(taskType: string, jobType: string): Promise<ITaskResponse<T>> {
     let task: ITaskResponse<T> | null;
     this.logger.info({
-      jobType: this.jobType,
+      jobType,
       taskType,
-      msg: `waitForTask jobType=${this.jobType}, taskType=${taskType}`,
+      msg: `waitForTask jobType=${jobType}, taskType=${taskType}`,
     });
     do {
-      task = await this.dequeue(taskType);
+      task = await this.dequeue(taskType, jobType);
       await new Promise((resolve) => setTimeout(resolve, this.dequeueIntervalMs));
     } while (!task);
     return task;
   }
 
-  public async dequeue<T>(taskType: string): Promise<ITaskResponse<T> | null> {
+  public async dequeue<T>(taskType: string, jobType: string): Promise<ITaskResponse<T> | null> {
     try {
-      const response = await this.jobManagerClient.consume<T>(taskType);
+      const response = await this.jobManagerClient.consume<T>(taskType, jobType);
       if (response) {
         const taskId = response.id;
         this.heartbeatClient.start(taskId);
@@ -65,9 +64,9 @@ export class TaskHandler {
       } else {
         this.logger.error({
           err,
-          jobType: this.jobType,
+          jobType,
           taskType,
-          msg: `dequeue FAILED for jobType=${this.jobType}, taskType=${taskType}`,
+          msg: `dequeue FAILED for jobType=${jobType}, taskType=${taskType}`,
           errorMessage: (err as { message: string }).message,
         });
         throw err;
