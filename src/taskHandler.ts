@@ -36,7 +36,7 @@ export class TaskHandler {
     );
   }
 
-  public async waitForTask<T>(taskType: string, jobType: string): Promise<ITaskResponse<T>> {
+  public async waitForTask<T>(jobType: string, taskType: string): Promise<ITaskResponse<T>> {
     let task: ITaskResponse<T> | null;
     this.logger.info({
       jobType,
@@ -44,15 +44,15 @@ export class TaskHandler {
       msg: `waitForTask jobType=${jobType}, taskType=${taskType}`,
     });
     do {
-      task = await this.dequeue(taskType, jobType);
+      task = await this.dequeue(jobType, taskType);
       await new Promise((resolve) => setTimeout(resolve, this.dequeueIntervalMs));
     } while (!task);
     return task;
   }
 
-  public async dequeue<T>(taskType: string, jobType: string): Promise<ITaskResponse<T> | null> {
+  public async dequeue<T>(jobType: string, taskType: string): Promise<ITaskResponse<T> | null> {
     try {
-      const response = await this.jobManagerClient.consume<T>(taskType, jobType);
+      const response = await this.jobManagerClient.consume<T>(jobType, taskType);
       if (response) {
         const taskId = response.id;
         this.heartbeatClient.start(taskId);
