@@ -143,7 +143,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async consume<T>(taskType: string, jobType: string): Promise<ITaskResponse<T> | null> {
+  public async consume<T>(jobType: string, taskType: string): Promise<ITaskResponse<T> | null> {
     const consumeTaskUrl = `/tasks/${jobType}/${taskType}/startPending`;
     try {
       const taskResponse = await this.post<ITaskResponse<T>>(consumeTaskUrl);
