@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v6.1.1...v7.0.0) (2023-05-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove job type from ctor (MAPCO-3145) (#33)
+
+* remove job type from ctor (MAPCO-3145) ([#33](https://github.com/MapColonies/mc-priority-queue/issues/33)) ([a032a4a](https://github.com/MapColonies/mc-priority-queue/commit/a032a4a1442bc6201d88b592d2471a8fa66a6dbb))
+
 ### [6.1.1](https://github.com/MapColonies/mc-priority-queue/compare/v6.1.0...v6.1.1) (2023-05-04)
 
 
