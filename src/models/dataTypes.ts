@@ -92,7 +92,7 @@ export interface ICreateTaskBody<T> {
 export interface IUpdateTaskBody<T> {
   description?: string;
   parameters?: T;
-  status: OperationStatus;
+  status?: OperationStatus;
   percentage?: number;
   reason?: string;
   attempts?: number;
