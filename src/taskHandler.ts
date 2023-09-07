@@ -83,7 +83,7 @@ export class TaskHandler {
         reason,
         msg: `reject task jobId=${jobId}, taskId=${taskId}`,
       });
-      this.heartbeatClient.stop(taskId);
+      await this.heartbeatClient.stop(taskId);
       let payload: IUpdateTaskBody<T> | undefined;
       if (isRecoverable) {
         const task = await this.jobManagerClient.getTask(jobId, taskId);
@@ -127,7 +127,7 @@ export class TaskHandler {
         taskId,
         msg: `ack task with jobId=${jobId}, taskId=${taskId}`,
       });
-      this.heartbeatClient.stop(taskId);
+      await this.heartbeatClient.stop(taskId);
       const payload: IUpdateTaskBody<T> = {
         status: OperationStatus.COMPLETED,
         percentage: maxValidPercentage,
