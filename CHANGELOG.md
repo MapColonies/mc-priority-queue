@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.2](https://github.com/MapColonies/mc-priority-queue/compare/v7.0.1...v7.0.2) (2023-09-07)
+
+
+### Bug Fixes
+
+* not removing row from heartbeat db ([#34](https://github.com/MapColonies/mc-priority-queue/issues/34)) ([17b2bb6](https://github.com/MapColonies/mc-priority-queue/commit/17b2bb61d4dbc0bb7353eee1e8628b99c7275f74))
+
 ### [7.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v7.0.0...v7.0.1) (2023-05-29)
 
 ## [7.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v6.1.1...v7.0.0) (2023-05-29)
