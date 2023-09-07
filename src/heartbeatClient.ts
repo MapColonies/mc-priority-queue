@@ -35,7 +35,7 @@ export class HeartbeatClient extends HttpClient {
     );
   }
 
-  public stop(taskId: string): void {
+  public async stop(taskId: string): Promise<void> {
     this.logger.info({
       taskId,
       url: this.heartbeatBaseUrl,
@@ -46,6 +46,7 @@ export class HeartbeatClient extends HttpClient {
       clearInterval(this.intervalKey);
       this.intervalKey = null;
     }
+    await this.remove(taskId);
   }
 
   public async send(taskId: string): Promise<void> {
@@ -59,6 +60,22 @@ export class HeartbeatClient extends HttpClient {
         url: this.heartbeatBaseUrl,
         targetService: this.targetService,
         msg: `send heartbeat failed for taskId=${taskId}`,
+        errorMessage: (err as { message: string }).message,
+      });
+    }
+  }
+
+  public async remove(taskId: string): Promise<void> {
+    try {
+      const heartbeatUrl = `/heartbeat/remove`;
+      await this.post(heartbeatUrl, [taskId]);
+    } catch (err) {
+      this.logger.error({
+        err,
+        taskId,
+        url: this.heartbeatBaseUrl,
+        targetService: this.targetService,
+        msg: `remove heartbeat failed for taskId=${taskId}`,
         errorMessage: (err as { message: string }).message,
       });
     }
