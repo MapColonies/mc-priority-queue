@@ -3,7 +3,7 @@ import { Logger } from '@map-colonies/js-logger';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
-  private readonly intervalDictionary: Record<string, NodeJS.Timer | null>;
+  private readonly intervalDictionary: Record<string, NodeJS.Timer | undefined>;
   public constructor(
     protected readonly logger: Logger,
     protected intervalMs: number,
@@ -24,13 +24,12 @@ export class HeartbeatClient extends HttpClient {
       msg: `start heartbeat for taskId=${taskId}`,
     });
     const interval = this.intervalDictionary[taskId];
-    if (interval !== null) {
+    if (interval) {
       this.logger.warn({
         taskId,
         msg: `interval for taskId: ${taskId} is not null but it should be null! Maybe there is a bug in the service`,
       });
       clearInterval(interval);
-      this.intervalDictionary[taskId] = null;
     }
     this.intervalDictionary[taskId] = setInterval(
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -49,13 +48,13 @@ export class HeartbeatClient extends HttpClient {
       msg: `stop heartbeat for taskId=${taskId}`,
     });
     const interval = this.intervalDictionary[taskId];
-    if (interval !== null) {
-      this.logger.warn({
-        taskId,
-        msg: `interval for taskId: ${taskId} is not null but it should be null! Maybe there is a bug in the service`,
-      });
+    if (interval) {
       clearInterval(interval);
-      this.intervalDictionary[taskId] = null;
+    } else {
+      this.logger.error({
+        taskId,
+        msg: `interval for taskId: ${taskId} is not exists but it should exists!`,
+      });
     }
     delete this.intervalDictionary[taskId];
     await this.remove(taskId);
