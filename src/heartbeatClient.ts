@@ -50,13 +50,13 @@ export class HeartbeatClient extends HttpClient {
     const interval = this.intervalDictionary[taskId];
     if (interval) {
       clearInterval(interval);
+      delete this.intervalDictionary[taskId];
     } else {
       this.logger.error({
         taskId,
         msg: `interval for taskId: ${taskId} is not exists but it should exists!`,
       });
     }
-    delete this.intervalDictionary[taskId];
     await this.remove(taskId);
   }
 
