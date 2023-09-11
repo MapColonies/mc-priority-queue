@@ -3,7 +3,7 @@ import { Logger } from '@map-colonies/js-logger';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
-  public intervalKey: NodeJS.Timer | null = null;
+  private readonly intervalDictionary: Record<string, NodeJS.Timer | undefined>;
   public constructor(
     protected readonly logger: Logger,
     protected intervalMs: number,
@@ -13,6 +13,7 @@ export class HeartbeatClient extends HttpClient {
     disableDebugLogs: boolean | undefined = true
   ) {
     super(logger, heartbeatBaseUrl, targetService, httpRetryConfig, disableDebugLogs);
+    this.intervalDictionary = {};
   }
 
   public start(taskId: string): void {
@@ -22,11 +23,15 @@ export class HeartbeatClient extends HttpClient {
       targetService: this.targetService,
       msg: `start heartbeat for taskId=${taskId}`,
     });
-    if (this.intervalKey !== null) {
-      clearInterval(this.intervalKey);
-      this.intervalKey = null;
+    const interval = this.intervalDictionary[taskId];
+    if (interval) {
+      this.logger.warn({
+        taskId,
+        msg: `interval for taskId: ${taskId} is not null but it should be null! Maybe there is a bug in the service`,
+      });
+      clearInterval(interval);
     }
-    this.intervalKey = setInterval(
+    this.intervalDictionary[taskId] = setInterval(
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       async () => {
         await this.send(taskId);
@@ -42,9 +47,15 @@ export class HeartbeatClient extends HttpClient {
       targetService: this.targetService,
       msg: `stop heartbeat for taskId=${taskId}`,
     });
-    if (this.intervalKey !== null) {
-      clearInterval(this.intervalKey);
-      this.intervalKey = null;
+    const interval = this.intervalDictionary[taskId];
+    if (interval) {
+      clearInterval(interval);
+      delete this.intervalDictionary[taskId];
+    } else {
+      this.logger.error({
+        taskId,
+        msg: `interval for taskId: ${taskId} is not exists but it should exists!`,
+      });
     }
     await this.remove(taskId);
   }
