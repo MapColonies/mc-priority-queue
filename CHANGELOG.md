@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v7.0.2...v7.1.0) (2023-09-12)
+
+
+### Features
+
+* allowing multiple intervals ([#35](https://github.com/MapColonies/mc-priority-queue/issues/35)) ([69640ce](https://github.com/MapColonies/mc-priority-queue/commit/69640ce4fcb741b47ca3ac497e26e21b3f2c5197))
+
 ### [7.0.2](https://github.com/MapColonies/mc-priority-queue/compare/v7.0.1...v7.0.2) (2023-09-07)
 
 
