@@ -39,7 +39,7 @@ jobs:
       - name: Install TS Project dependencies
         run: npm ci
       - name: build packages
-        run: npx lerna run build
+        run: npm run build
       - name: build docs
         run: npx typedoc
       - name: Setup Pages
