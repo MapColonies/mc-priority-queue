@@ -29,7 +29,8 @@ export class HeartbeatClient extends HttpClient {
         taskId,
         msg: `interval for taskId: ${taskId} is not null but it should be null! Maybe there is a bug in the service`,
       });
-      clearInterval(interval);
+
+      clearInterval(interval as unknown as NodeJS.Timeout);
     }
     this.intervalDictionary[taskId] = setInterval(
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -49,7 +50,7 @@ export class HeartbeatClient extends HttpClient {
     });
     const interval = this.intervalDictionary[taskId];
     if (interval) {
-      clearInterval(interval);
+      clearInterval(interval as unknown as NodeJS.Timeout);
       delete this.intervalDictionary[taskId];
     } else {
       this.logger.error({
