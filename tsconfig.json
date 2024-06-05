@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2022",
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "module": "commonjs",
