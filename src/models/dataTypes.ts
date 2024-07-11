@@ -129,8 +129,8 @@ export interface IFindJobsByCriteriaBody {
   resourceId?: string;
   version?: string;
   isCleaned?: boolean;
-  status?: OperationStatus[];
-  type?: string[];
+  statuses?: OperationStatus[];
+  types?: string[];
   shouldReturnTasks?: boolean;
   shouldReturnAvailableActions?: boolean;
   productType?: string;
