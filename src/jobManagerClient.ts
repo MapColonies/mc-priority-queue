@@ -11,6 +11,7 @@ import {
   IUpdateJobBody,
   IUpdateTaskBody,
   IFindJobsRequest,
+  IFindJobsByCriteriaBody,
 } from './models/dataTypes';
 import { httpClientConfig } from './models/utils';
 
@@ -137,6 +138,52 @@ export class JobManagerClient extends HttpClient {
         targetService: this.targetService,
         findJobsParams,
         msg: `failed to getJobs`,
+        errorMessage: (err as { message: string }).message,
+      });
+      throw err;
+    }
+  }
+
+  public async findJobs<T, P>(findJobsParams: IFindJobsByCriteriaBody): Promise<IJobResponse<T, P>[]> {
+    const findJobsUrl = this.findJobsUrl();
+    if (findJobsParams.resourceId !== undefined) {
+      findJobsParams.resourceId = encodeURIComponent(findJobsParams.resourceId);
+    }
+    if (findJobsParams.productType !== undefined) {
+      findJobsParams.productType = encodeURIComponent(findJobsParams.productType);
+    }
+    try {
+      this.logger.debug({
+        url: findJobsUrl,
+        targetService: this.targetService,
+        findJobsParams,
+        msg: `findJobs`,
+      });
+      const res = await this.post<IJobResponse<T, P>[]>(findJobsUrl, {
+        resourceId: findJobsParams.resourceId,
+        version: findJobsParams.version,
+        isCleaned: findJobsParams.isCleaned,
+        productType: findJobsParams.productType,
+        statuses: findJobsParams.statuses,
+        types: findJobsParams.types,
+        shouldReturnTasks: findJobsParams.shouldReturnTasks,
+        fromDate: findJobsParams.fromDate,
+        tillDate: findJobsParams.tillDate,
+        internalId: findJobsParams.internalId,
+        domain: findJobsParams.domain,
+        shouldReturnAvailableActions: findJobsParams.shouldReturnAvailableActions,
+      });
+      if (typeof res === 'string' || res.length === 0) {
+        return [];
+      }
+      return res;
+    } catch (err) {
+      this.logger.error({
+        err,
+        url: findJobsUrl,
+        targetService: this.targetService,
+        findJobsParams,
+        msg: `failed to findJobs`,
         errorMessage: (err as { message: string }).message,
       });
       throw err;
@@ -368,6 +415,11 @@ export class JobManagerClient extends HttpClient {
 
   protected getJobsUrl(): string {
     const jobsUrl = '/jobs';
+    return jobsUrl;
+  }
+
+  protected findJobsUrl(): string {
+    const jobsUrl = '/jobs/find';
     return jobsUrl;
   }
 
