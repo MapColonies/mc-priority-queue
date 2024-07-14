@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v8.0.1...v8.1.0) (2024-07-14)
+
+
+### Features
+
+* support jobs/find route in jobManager (MAPCO-4427 , MAPCO-4431) ([#38](https://github.com/MapColonies/mc-priority-queue/issues/38)) ([2e0bbb9](https://github.com/MapColonies/mc-priority-queue/commit/2e0bbb94b29212dccf80456d9029185feeaec56d))
+
+
+### Bug Fixes
+
+* unsent params ([#39](https://github.com/MapColonies/mc-priority-queue/issues/39)) ([559e311](https://github.com/MapColonies/mc-priority-queue/commit/559e31101c502049ee3750b1f50274f803e8974c))
+
 ### [8.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v8.0.0...v8.0.1) (2024-07-14)
 
 ## [8.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v7.1.1...v8.0.0) (2024-06-05)
