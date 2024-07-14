@@ -170,6 +170,8 @@ export class JobManagerClient extends HttpClient {
         fromDate: findJobsParams.fromDate,
         tillDate: findJobsParams.tillDate,
         internalId: findJobsParams.internalId,
+        domain: findJobsParams.domain,
+        shouldReturnAvailableActions: findJobsParams.shouldReturnAvailableActions,
       });
       if (typeof res === 'string' || res.length === 0) {
         return [];
