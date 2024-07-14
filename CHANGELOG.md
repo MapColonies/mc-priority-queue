@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v8.0.0...v8.0.1) (2024-07-14)
+
 ## [8.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v7.1.1...v8.0.0) (2024-06-05)
 
 ### [7.1.1](https://github.com/MapColonies/mc-priority-queue/compare/v7.1.0...v7.1.1) (2024-02-05)
