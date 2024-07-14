@@ -125,4 +125,19 @@ export interface IFindJobsRequest {
   internalId?: string;
 }
 
+export interface IFindJobsByCriteriaBody {
+  resourceId?: string;
+  version?: string;
+  isCleaned?: boolean;
+  statuses?: OperationStatus[];
+  types?: string[];
+  shouldReturnTasks?: boolean;
+  shouldReturnAvailableActions?: boolean;
+  productType?: string;
+  fromDate?: string;
+  tillDate?: string;
+  internalId?: string;
+  domain?: string;
+}
+
 export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}
