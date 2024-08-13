@@ -379,7 +379,7 @@ export class JobManagerClient extends HttpClient {
     }
   }
 
-  public async createTaskForJob<T>(jobId: string, taskBody: ICreateTaskBody<T>): Promise<void> {
+  public async createTaskForJob<T>(jobId: string, taskBody: ICreateTaskBody<T> | ICreateTaskBody<T>[]): Promise<void> {
     const createTaskForJobUrl = this.getTaskForJobUrl(jobId);
     try {
       this.logger.info({
