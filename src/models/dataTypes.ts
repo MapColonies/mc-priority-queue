@@ -5,7 +5,7 @@ export enum OperationStatus {
   FAILED = 'Failed',
   EXPIRED = 'Expired',
   ABORTED = 'Aborted',
-  SUSPENDED = 'Suspended'
+  SUSPENDED = 'Suspended',
 }
 
 export interface ITaskResponse<T> {
