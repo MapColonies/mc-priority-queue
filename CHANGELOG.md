@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.2.1](https://github.com/MapColonies/mc-priority-queue/compare/v8.2.0...v8.2.1) (2024-12-04)
+
+
+### Bug Fixes
+
+* npm publish yaml ([#42](https://github.com/MapColonies/mc-priority-queue/issues/42)) ([52ce76b](https://github.com/MapColonies/mc-priority-queue/commit/52ce76b612e2c00c3912e9acca1b2515b76c0163))
+
 ## [8.2.0](https://github.com/MapColonies/mc-priority-queue/compare/v8.1.1...v8.2.0) (2024-12-04)
 
 
