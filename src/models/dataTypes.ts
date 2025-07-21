@@ -141,4 +141,4 @@ export interface IFindJobsByCriteriaBody {
   domain?: string;
 }
 
-export interface IFindTaskRequest<T> extends Partial<ITaskResponse<T>> {}
+export type IFindTaskRequest<T> = Partial<ITaskResponse<T>>;
