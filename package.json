@@ -20,7 +20,8 @@
     "build": "tsc --project tsconfig.build.json",
     "start": "npm run build && cd dist && node ./index.js",
     "clean": "rimraf dist",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "node .husky/install.mjs"
   },
   "repository": {
     "type": "git",
@@ -30,12 +31,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/MapColonies/mc-priority-queue/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "files": [
     "dist/**/*"
