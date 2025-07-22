@@ -20,8 +20,7 @@
     "build": "tsc --project tsconfig.build.json",
     "start": "npm run build && cd dist && node ./index.js",
     "clean": "rimraf dist",
-    "prepack": "npm run build",
-    "prepare": "node .husky/install.mjs"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
