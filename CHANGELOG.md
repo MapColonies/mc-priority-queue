@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v8.2.1...v9.0.0) (2025-07-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** upgrade to latest packages ([#43](https://github.com/MapColonies/mc-priority-queue/issues/43))
+
+### Features
+
+* add jira integration workflow ([#44](https://github.com/MapColonies/mc-priority-queue/issues/44)) ([66a945a](https://github.com/MapColonies/mc-priority-queue/commit/66a945a7bb5ec5111d974c728825809a97f5f7bd))
+
+
+### Build System
+
+* **deps:** upgrade to latest packages ([#43](https://github.com/MapColonies/mc-priority-queue/issues/43)) ([4af4118](https://github.com/MapColonies/mc-priority-queue/commit/4af4118c64f3127ade0cbd8eacfd4533fc666b2e))
+
 ### [8.2.1](https://github.com/MapColonies/mc-priority-queue/compare/v8.2.0...v8.2.1) (2024-12-04)
 
 
