@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 
 ### ⚠ BREAKING CHANGES
+Dropped support for node < 22
 
 * **deps:** upgrade to latest packages ([#43](https://github.com/MapColonies/mc-priority-queue/issues/43))
 
