@@ -59,7 +59,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@map-colonies/js-logger": "^1.0.1",
-    "@map-colonies/mc-utils": "^3.1.0"
+    "@map-colonies/js-logger": "^3.0.1",
+    "@map-colonies/mc-utils": "^4.0.2"
   }
 }
