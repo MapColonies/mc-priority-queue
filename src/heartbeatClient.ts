@@ -3,7 +3,7 @@ import { Logger } from '@map-colonies/js-logger';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
-  private readonly intervalDictionary: Record<string, NodeJS.Timer | undefined>;
+  private readonly intervalDictionary: Record<string, NodeJS.Timeout | undefined>;
   public constructor(
     protected readonly logger: Logger,
     protected intervalMs: number,
@@ -30,7 +30,7 @@ export class HeartbeatClient extends HttpClient {
         msg: `interval for taskId: ${taskId} is not null but it should be null! Maybe there is a bug in the service`,
       });
 
-      clearInterval(interval as unknown as NodeJS.Timeout);
+      clearInterval(interval);
     }
     this.intervalDictionary[taskId] = setInterval(
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -50,7 +50,7 @@ export class HeartbeatClient extends HttpClient {
     });
     const interval = this.intervalDictionary[taskId];
     if (interval) {
-      clearInterval(interval as unknown as NodeJS.Timeout);
+      clearInterval(interval);
       delete this.intervalDictionary[taskId];
     } else {
       this.logger.error({
