@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.2.2](https://github.com/MapColonies/mc-priority-queue/compare/v8.2.1...v8.2.2) (2025-10-12)
+
+
+### Bug Fixes
+
+* add reason to rejected tasks that are not recoverable ([#50](https://github.com/MapColonies/mc-priority-queue/issues/50)) ([02b8e67](https://github.com/MapColonies/mc-priority-queue/commit/02b8e67a71bf5b9ae76906f1f1b8329e006fb9f0))
+
 ### [8.2.1](https://github.com/MapColonies/mc-priority-queue/compare/v8.2.0...v8.2.1) (2024-12-04)
 
 

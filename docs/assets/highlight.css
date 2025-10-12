@@ -1,5 +1,5 @@
 :root {
-    --light-code-background: #FFFFFF;
+    --light-code-background: #F5F5F5;
     --dark-code-background: #1E1E1E;
 }
 
@@ -11,11 +11,11 @@
     --code-background: var(--dark-code-background);
 } }
 
-:root[data-theme='light'] {
+body.light {
     --code-background: var(--light-code-background);
 }
 
-:root[data-theme='dark'] {
+body.dark {
     --code-background: var(--dark-code-background);
 }
 
