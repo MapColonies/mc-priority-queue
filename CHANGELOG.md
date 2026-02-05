@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.0.1](https://github.com/MapColonies/mc-priority-queue/compare/v9.0.0...v9.0.1) (2026-02-05)
+
+
+### Bug Fixes
+
+* upgrade to Node.js 24 and update CI workflows (MAPCO-9821) ([#52](https://github.com/MapColonies/mc-priority-queue/issues/52)) ([34f7237](https://github.com/MapColonies/mc-priority-queue/commit/34f7237c4bdd946bb32d6e39b603a270be9e42f2))
+
+
+### Build System
+
+* **deps:** upgrade js-logger (MAPCO-8489) ([#47](https://github.com/MapColonies/mc-priority-queue/issues/47)) ([5e81c3b](https://github.com/MapColonies/mc-priority-queue/commit/5e81c3b921e567cdb3f56fd7f67f0538fd1304e6))
+
 ## [9.0.0](https://github.com/MapColonies/mc-priority-queue/compare/v8.2.1...v9.0.0) (2025-07-29)
 
 
