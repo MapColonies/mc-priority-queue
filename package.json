@@ -4,7 +4,7 @@
   "description": "This package handles tasks consuming from jobs manager",
   "main": "./dist/index.js",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "test:unit": "jest --config=./tests/configurations/unit/jest.config.js",
@@ -62,6 +62,6 @@
   },
   "peerDependencies": {
     "@map-colonies/js-logger": "^3.0.2",
-    "@map-colonies/mc-utils": "^4.0.2"
+    "@map-colonies/mc-utils": "^4.0.4"
   }
 }

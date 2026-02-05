@@ -6,51 +6,38 @@ jobs:
   tests:
     name: Run Tests
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node: [22.x]
+        node: [24.x]
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
+      - name: Check out TS Project Git repository
+        uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - name: Init Nodejs
+        uses: MapColonies/shared-workflows/actions/init-npm@init-npm-v1
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Install Node.js dependencies
-        run: npm ci
 
       - name: Run tests
         run: npm run test
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Test Reporters
-          path: reports/**
+          name: Test Reporters ${{ matrix.node }}
+          path: ./reports/**
 
   eslint:
     name: Run TS Project eslint
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node: [24.x]
+
     steps:
-      - name: Check out TS Project Git repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 22.x
-
-      - name: Install TS Project dependencies
-        run: npm install
-
       - name: Run TS Project linters
-        uses: wearerequired/lint-action@v1
+        uses: MapColonies/shared-workflows/actions/eslint@eslint-v1.0.1
         with:
-          github_token: ${{ secrets.github_token }}
-          # Enable linters
-          eslint: true
-          prettier: true
-          eslint_extensions: ts
+          node_version: ${{ matrix.node }}
