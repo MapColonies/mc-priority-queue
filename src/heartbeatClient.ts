@@ -1,5 +1,5 @@
 import { HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
-import { Logger } from '@map-colonies/js-logger';
+import { Logger } from '@map-colonies/types';
 import { httpClientConfig } from './models/utils';
 
 export class HeartbeatClient extends HttpClient {
