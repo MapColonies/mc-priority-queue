@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v9.0.2...v9.1.0) (2026-03-17)
+
+
+### Features
+
+* using logger interface from @map-colonies/types(MAPCO-10215) ([#53](https://github.com/MapColonies/mc-priority-queue/issues/53)) ([c0e4b4c](https://github.com/MapColonies/mc-priority-queue/commit/c0e4b4c4529b63c2ac32d114fa4a8137e4f039aa))
+
 ## [9.0.2](https://github.com/MapColonies/mc-priority-queue/compare/v9.0.0...v9.0.2) (2026-02-05)
 
 
