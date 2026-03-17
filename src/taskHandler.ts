@@ -1,5 +1,5 @@
 import { IHttpRetryConfig } from '@map-colonies/mc-utils';
-import { Logger } from '@map-colonies/js-logger';
+import { Logger } from '@map-colonies/types';
 import { NotFoundError } from '@map-colonies/error-types';
 import { JobManagerClient } from './jobManagerClient';
 import { HeartbeatClient } from './heartbeatClient';

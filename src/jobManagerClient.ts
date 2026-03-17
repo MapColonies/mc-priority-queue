@@ -1,6 +1,6 @@
 import { HttpClient, IHttpRetryConfig } from '@map-colonies/mc-utils';
 import { NotFoundError } from '@map-colonies/error-types';
-import { Logger } from '@map-colonies/js-logger';
+import { Logger } from '@map-colonies/types';
 import {
   ICreateJobBody,
   ICreateTaskBody,
