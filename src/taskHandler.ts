@@ -95,6 +95,7 @@ export class TaskHandler {
       } else {
         payload = {
           status: OperationStatus.FAILED,
+          reason,
         };
       }
       this.logger.info({
