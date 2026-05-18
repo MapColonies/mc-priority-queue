@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.1](https://github.com/MapColonies/mc-priority-queue/compare/v9.1.0...v9.1.1) (2026-05-18)
+
+
+### Bug Fixes
+
+* update peer dependency @map-colonies/mc-utils to version 6.0.0 ([#55](https://github.com/MapColonies/mc-priority-queue/issues/55)) ([f29b50a](https://github.com/MapColonies/mc-priority-queue/commit/f29b50aa5e148ac71e0d964c7618b948a3364e37))
+
 ## [9.1.0](https://github.com/MapColonies/mc-priority-queue/compare/v9.0.2...v9.1.0) (2026-03-17)
 
 
