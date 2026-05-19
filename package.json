@@ -61,7 +61,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@map-colonies/mc-utils": "^6.0.0"
+    "@map-colonies/mc-utils": "^6.0.1"
   },
   "dependencies": {
     "@map-colonies/types": "^1.9.0"
